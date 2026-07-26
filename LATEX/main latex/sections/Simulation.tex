@@ -1,0 +1,622 @@
+\section{Simulation}
+\label{sec:simulations}
+
+Numerical simulations are conducted to verify the effectiveness of the proposed RBF neural network-based adaptive control strategy. 
+Two nonlinear systems with different uncertainty characteristics are considered. 
+The first example investigates the approximation capability of the RBF compensator under non-smooth disturbances, while the second example evaluates the proposed controller for a multi-joint robotic manipulator with dynamic coupling and lumped uncertainties.
+
+\begin{table}[!t]
+	\caption{Definitions of Control Modes and Adaptive Laws}
+	\label{tab:control_modes}
+	\centering
+	\begin{tabular}{c c l}
+		\hline
+		Parameter & Value & Description \\
+		\hline
+		$S_1$ & $1$ & First adaptive law \\
+		$S_1$ & $2$ & Second adaptive law with $\sigma$-modification \\
+		\hline
+		$S$ & $1$ & Nominal model-based controller without compensation \\
+		$S$ & $2$ & Controller with exact uncertainty compensation \\
+		$S$ & $3$ & Controller with RBF neural network compensation \\
+		\hline
+	\end{tabular}
+\end{table}
+
+%======================================================
+%======================================================
+\subsection{Example 1: Nonlinear Servo System with Non-Smooth Disturbance}
+
+Consider a single-degree-of-freedom nonlinear servo system described by
+\begin{equation}
+	M\ddot{q}=\tau+d(\dot{q}),
+\end{equation}
+where $M=10$ and the disturbance term is given by
+\begin{equation}
+	d(\dot{q})=-15\dot{q}-30\operatorname{sgn}(\dot{q}).
+\end{equation}
+
+Before presenting the simulation results, the overall simulation
+configuration is introduced. The Simulink implementation of the proposed
+control framework is illustrated in Fig.~\ref{fig:sim_structure}.
+The simulation platform consists of the nonlinear servo system, the
+controller module, the reference trajectory generator, and the uncertainty
+compensation module.
+
+The controller receives the desired trajectory and the measured system
+states, and generates the control input $\tau$. Depending on the selected
+control mode, the uncertainty compensation term is either disabled
+($S=1$), obtained from the known disturbance model ($S=2$), or generated
+by the RBF neural network ($S=3$).
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap6_1sim.pdf}
+	\caption{
+		Simulink implementation of the nonlinear servo system and the proposed
+		control framework.
+	}
+	\label{fig:sim_structure}
+\end{figure}
+
+The disturbance consists of viscous friction and Coulomb friction components, 
+which introduces a non-smooth uncertainty into the closed-loop system.
+
+The desired trajectory is selected as
+\begin{equation}
+	q_d(t)=\sin(t)\ \mathrm{rad},
+\end{equation}
+with the initial condition
+\[
+[q(0),\dot q(0)]^T=[0.6,0]^T .
+\]
+
+
+The controller parameters are selected as
+\[
+Q=50I_2,\qquad \gamma=200,\qquad \sigma=0.001 .
+\]
+
+The RBF neural network employs Gaussian basis functions with different
+numbers of hidden nodes. Two configurations with $m=5$ and $m=19$ are
+considered.
+
+For the case of $m=5$, the centers are selected as
+
+\[
+c_i=
+[\alpha_i,\alpha_i]^T,
+\]
+
+where
+
+\[
+\alpha_i\in\{-1,-0.5,0,0.5,1\}.
+\]
+
+For the case of $m=19$, a denser distribution of centers is adopted:
+
+\[
+\alpha_i\in
+\{-1,-8/9,\ldots,0,\ldots,8/9,1\}.
+\]
+
+The Gaussian basis functions are defined as
+
+\[
+h_i(\xi)=
+\exp
+\left(
+-\frac{\|\xi-c_i\|^2}{2b^2}
+\right),
+\]
+
+where the width parameter is selected as $b=5$ for all basis functions.
+The initial neural network weights are set as
+$\hat W(0)=0$.
+
+
+To evaluate the effectiveness of the proposed adaptive compensation strategy,
+three different compensation modes are considered:
+
+\begin{itemize}
+	\item $S=1$: nominal model-based controller without uncertainty compensation;
+	\item $S=2$: exact compensation controller assuming that the uncertainty 
+	$d(\dot q)$ is completely known;
+	\item $S=3$: RBF neural network compensation controller, where the unknown
+	uncertainty is approximated online.
+\end{itemize}
+
+For $S=3$, two adaptive laws are investigated:
+$S_1=1$ and $S_1=2$.
+
+
+%======================================================
+\subsubsection{Nominal Model-Based Controller ($S=1$)}
+
+In this case, only the nominal model is used in the controller design.
+The disturbance term is not compensated, and the adaptive law selection
+parameter $S_1$ has no influence because the RBF network is not involved.
+
+The tracking response is shown in Fig.~\ref{fig:S1_track}, while the
+uncertainty response is presented in Fig.~\ref{fig:S1_rbf}.
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap1_S=1_displacementandvelocity.pdf}
+	\caption{
+		Tracking performance of the nominal controller ($S=1$).
+	}
+	\label{fig:S1_track}
+\end{figure}
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap1_S=1_RBFfx.pdf}
+	\caption{
+		Unknown disturbance and estimation result under the nominal controller
+		($S=1$).
+	}
+	\label{fig:S1_rbf}
+\end{figure}
+
+
+As observed in Fig.~\ref{fig:S1_track}, the nominal controller cannot
+completely reject the non-smooth friction disturbance, resulting in a
+non-zero tracking error.
+
+Since no compensation mechanism is activated, the estimated uncertainty
+remains zero, as shown in Fig.~\ref{fig:S1_rbf}.
+
+
+%======================================================
+\subsubsection{Exact Compensation Controller ($S=2$)}
+
+For $S=2$, the uncertainty term is assumed to be known exactly.
+Therefore, the compensation input directly cancels the disturbance:
+
+\[
+\tau_c=-d(\dot q).
+\]
+
+The adaptive law parameter $S_1$ does not affect the control performance
+because the RBF neural network is not used.
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap1_S=2_displacementandvelocity.pdf}
+	\caption{
+		Tracking performance with exact uncertainty compensation ($S=2$).
+	}
+	\label{fig:S2_track}
+\end{figure}
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap1_S=2_RBFfx.pdf}
+	\caption{
+		Exact disturbance compensation result ($S=2$).
+	}
+	\label{fig:S2_rbf}
+\end{figure}
+
+
+As shown in Fig.~\ref{fig:S2_track}, the tracking error converges rapidly
+because the disturbance is completely compensated.
+
+Different from the RBF compensation case, the uncertainty estimation is
+not generated by the neural network. Instead, the exact disturbance model
+is directly used for compensation.
+
+%======================================================
+\subsubsection{RBF Neural Network Compensation ($S=3$)}
+
+When $S=3$, the explicit expression of the nonlinear disturbance is assumed
+to be unknown to the controller. Therefore, an RBF neural network is
+introduced to approximate the lumped uncertainty:
+
+\begin{equation}
+	\hat{f}(x)=\hat{W}^{T}h(\xi),
+\end{equation}
+
+where $\hat{W}$ denotes the adaptive weight vector and $h(\xi)$ represents
+the Gaussian basis function vector.
+
+Unlike the previous two cases, the disturbance compensation is generated
+by the neural network rather than directly using the known disturbance
+model. Therefore, the adaptive law plays an important role in determining
+the convergence behavior of the estimated uncertainty.
+
+
+%------------------------------------------------------
+\paragraph{First adaptive law ($S=3,S_1=1$)}
+
+Firstly, the RBF controller with the first adaptive law is investigated.
+The tracking performance and uncertainty approximation results are shown
+in Fig.~\ref{fig:S31_track} and Fig.~\ref{fig:S31_rbf}, respectively.
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap1_S=3_S1=1_displacementandvelocity.pdf}
+	\caption{
+		Tracking performance of the RBF adaptive controller with the first
+		adaptive law ($S=3,S_1=1$).
+	}
+	\label{fig:S31_track}
+\end{figure}
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap1_S=3_S1=1_RBFfx.pdf}
+	\caption{
+		Approximation of the nonlinear disturbance using the RBF neural network
+		with the first adaptive law ($S=3,S_1=1$).
+	}
+	\label{fig:S31_rbf}
+\end{figure}
+
+
+As shown in Fig.~\ref{fig:S31_track}, the RBF compensation effectively
+reduces the tracking error compared with the nominal controller.
+The approximation result in Fig.~\ref{fig:S31_rbf} demonstrates that the
+neural network is able to learn the unknown disturbance online.
+
+
+%------------------------------------------------------
+\paragraph{Second adaptive law with $m=5$ hidden nodes
+	($S=3,S_1=2$)}
+
+Next, the second adaptive law is evaluated with an RBF neural network
+containing five hidden nodes.
+
+The corresponding tracking response and disturbance approximation result
+are shown in Fig.~\ref{fig:S32_m5_track} and Fig.~\ref{fig:S32_m5_rbf}.
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=5.pdf}
+	\caption{
+		Tracking response using the second adaptive law with five hidden nodes
+		($S=3,S_1=2,m=5$).
+	}
+	\label{fig:S32_m5_track}
+\end{figure}
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap1_S=3_S1=2_RBFfx_m=5.pdf}
+	\caption{
+		RBF approximation result with five hidden nodes
+		($S=3,S_1=2,m=5$).
+	}
+	\label{fig:S32_m5_rbf}
+\end{figure}
+
+
+With a limited number of hidden nodes, the RBF network provides a coarse
+approximation of the nonlinear disturbance. The residual approximation
+error leads to a relatively larger tracking deviation.
+
+
+%------------------------------------------------------
+\paragraph{Second adaptive law with $m=19$ hidden nodes
+	($S=3,S_1=2$)}
+
+To further investigate the influence of the approximation capability,
+the number of hidden nodes is increased to $m=19$.
+
+The corresponding results are presented in
+Fig.~\ref{fig:S32_m19_track} and Fig.~\ref{fig:S32_m19_rbf}.
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=19.pdf}
+	\caption{
+		Tracking response using the second adaptive law with nineteen hidden
+		nodes ($S=3,S_1=2,m=19$).
+	}
+	\label{fig:S32_m19_track}
+\end{figure}
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap1_S=3_S1=2_RBFfx_m=19.pdf}
+	\caption{
+		RBF approximation result with nineteen hidden nodes
+		($S=3,S_1=2,m=19$).
+	}
+	\label{fig:S32_m19_rbf}
+\end{figure}
+
+
+Compared with the case of $m=5$, the denser distribution of Gaussian basis
+functions improves the approximation capability of the RBF neural network.
+Consequently, the estimated uncertainty is closer to the actual disturbance,
+which leads to improved tracking performance.
+
+
+%------------------------------------------------------
+\paragraph{Summary}
+
+The simulation results verify the effectiveness of the RBF-based adaptive
+compensation strategy.
+
+When the uncertainty model is unavailable, the RBF neural network can
+successfully approximate the unknown nonlinear disturbance and reduce the
+tracking error.
+
+Furthermore, increasing the hidden-layer size from $m=5$ to $m=19$
+enhances the approximation capability of the neural network.
+The comparison also shows that the adaptive law selection affects the
+weight update behavior and uncertainty estimation performance.
+
+
+%======================================================
+\subsubsection{Discussion}
+
+The simulation results verify the effectiveness of different compensation
+strategies.
+
+The nominal controller ($S=1$) suffers from residual tracking errors because
+the disturbance is completely uncompensated.
+
+The exact compensation controller ($S=2$) achieves the best tracking
+performance since the disturbance is assumed to be completely known.
+
+For the practical case where the uncertainty model is unavailable,
+the RBF-based adaptive controller ($S=3$) successfully approximates the
+unknown disturbance and achieves improved tracking performance.
+
+Moreover, the comparison between $S_1=1$ and $S_1=2$ demonstrates that the
+second adaptive law provides improved weight regulation while preserving
+tracking accuracy.
+
+%======================================================
+\subsection{Example 2: Two-Link Robotic Manipulator with Coupled Uncertainties}
+
+A two-link planar robotic manipulator is considered to further evaluate
+the proposed adaptive control strategy in the presence of nonlinear
+dynamic coupling, parameter uncertainties, and external disturbances.
+The simulation configuration implemented in Simulink is shown in
+Fig.~\ref{fig:ex2_sim}.
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap6_2sim.pdf}
+	\caption{
+		Simulink implementation of the two-link robotic manipulator control
+		system.
+	}
+	\label{fig:ex2_sim}
+\end{figure}
+
+
+The nominal dynamics of the robotic manipulator are described as
+
+\begin{equation}
+	M(q)\ddot q+C(q,\dot q)\dot q+G(q)=\tau+d ,
+	\label{eq:robot_dynamics}
+\end{equation}
+
+where the inertia matrix, Coriolis matrix, and gravity vector are given by
+
+
+\begin{align}
+	M(q)
+	&=
+	\begin{bmatrix}
+		v+q_{01}+2q_{02}\cos(q_2)
+		&
+		q_{01}+q_{02}\cos(q_2)
+		\\[2mm]
+		q_{01}+q_{02}\cos(q_2)
+		&
+		q_{01}
+	\end{bmatrix},
+	\\[3mm]
+	C(q,\dot q)
+	&=
+	\begin{bmatrix}
+		-q_{02}\dot q_2\sin(q_2)
+		&
+		-q_{02}(\dot q_1+\dot q_2)\sin(q_2)
+		\\[2mm]
+		q_{02}\dot q_1\sin(q_2)
+		&
+		0
+	\end{bmatrix},
+	\\[3mm]
+	G(q)
+	&=
+	\begin{bmatrix}
+		15g\cos(q_1)
+		+
+		8.75g\cos(q_1+q_2)
+		\\[2mm]
+		8.75g\cos(q_1+q_2)
+	\end{bmatrix}.
+\end{align}
+
+
+The physical parameters are selected as
+
+\[
+v=13.33,\qquad
+q_{01}=8.98,\qquad
+q_{02}=8.75,
+\qquad
+g=9.8~\mathrm{m/s^2}.
+\]
+
+
+The external disturbance is selected as an error-dependent nonlinear
+uncertainty:
+
+\begin{equation}
+	d(t,e,\dot e)
+	=
+	d_1+d_2\|e\|+d_3\|\dot e\|,
+\end{equation}
+
+where
+
+\[
+d_1=[2,2]^T,\qquad
+d_2=[3,3]^T,\qquad
+d_3=[6,6]^T .
+\]
+
+
+To evaluate the robustness of the proposed controller against modeling
+uncertainties, a $20\%$ parameter mismatch is introduced into the nominal
+dynamic model:
+
+\[
+\Delta M=0.2M_0,\qquad
+\Delta C=0.2C_0,\qquad
+\Delta G=0.2G_0 .
+\]
+
+
+The desired trajectories of the two joints are selected as
+
+\begin{align}
+	q_{1d}(t)
+	&=
+	1+0.2\sin(0.5\pi t),
+	\\
+	q_{2d}(t)
+	&=
+	1-0.2\cos(0.5\pi t).
+\end{align}
+
+
+The initial condition is selected as
+
+\[
+X(0)
+=
+[0.6,0.3,0.5,0.5]^T .
+\]
+
+
+The control parameters are chosen as
+
+\[
+Q=50I_4,\qquad
+\gamma=20,\qquad
+\sigma=0.001 .
+\]
+
+
+In this example, the RBF neural network compensation controller
+with the second adaptive law ($S=3,S_1=2$) is adopted.
+The Gaussian basis functions are initialized with
+
+\[
+\hat W(0)=0.1I .
+\]
+
+The RBF network approximates the unknown lumped uncertainty as
+
+\[
+\hat f(x)=\hat W^Th(x).
+\]
+
+
+The simulation results are presented in the following figures.
+The joint angle tracking responses are shown in
+Fig.~\ref{fig:ex2_angle}, while the corresponding angular velocity
+tracking performance is presented in Fig.~\ref{fig:ex2_velocity}.
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap2_S=3_S1=2 Angle tracking of joint 1 and joint 2.pdf}
+	\caption{
+		Angle tracking responses of joint 1 and joint 2 under the proposed
+		RBF adaptive controller ($S=3,S_1=2$).
+	}
+	\label{fig:ex2_angle}
+\end{figure}
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap2_S=3_S1=2 Angular velocity tracking of joint 1 and joint 2.pdf}
+	\caption{
+		Angular velocity tracking responses of joint 1 and joint 2.
+	}
+	\label{fig:ex2_velocity}
+\end{figure}
+
+
+The generated control inputs of the two joints are illustrated in
+Fig.~\ref{fig:ex2_control}.
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap2_S=3_S1=2 Control input of joint 1 and joint 2.pdf}
+	\caption{
+		Control inputs of joint 1 and joint 2 generated by the adaptive
+		controller.
+	}
+	\label{fig:ex2_control}
+\end{figure}
+
+
+Finally, the actual lumped uncertainty and its RBF approximation are
+shown in Fig.~\ref{fig:ex2_approx}.
+
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.48\textwidth]
+	{result_pdf/chap2_S=3_S1=2 f(x) of joint 1 and joint 2 and its approximation.pdf}
+	\caption{
+		Actual lumped uncertainty and its RBF neural network approximation.
+	}
+	\label{fig:ex2_approx}
+\end{figure}
+
+
+The simulation results demonstrate that the proposed adaptive RBF
+compensation controller achieves accurate trajectory tracking despite the
+existence of nonlinear coupling, parameter uncertainties, and external
+disturbances.
+
+As shown in Fig.~\ref{fig:ex2_angle} and Fig.~\ref{fig:ex2_velocity},
+both joint positions and angular velocities converge to their desired
+trajectories with small tracking errors.
+
+Furthermore, Fig.~\ref{fig:ex2_approx} verifies that the RBF neural
+network can effectively approximate the unknown lumped uncertainty online.
+The generated control inputs remain bounded and smooth, as illustrated in
+Fig.~\ref{fig:ex2_control}, demonstrating the robustness of the proposed
+adaptive compensation strategy.

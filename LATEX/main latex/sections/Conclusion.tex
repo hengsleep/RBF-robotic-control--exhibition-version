@@ -1,0 +1,36 @@
+\section{Conclusion}
+
+This paper has investigated an adaptive neural network-based control
+strategy for robotic manipulators subject to modeling uncertainties,
+external disturbances, and unmodeled nonlinear dynamics. By decomposing
+the robot dynamics into a nominal model and a lumped uncertainty term, an
+RBF neural network was introduced to approximate the unknown nonlinear
+function online. Based on the nominal inverse dynamics and neural
+compensation, a modular controller structure was developed, where the
+trajectory tracking objective and uncertainty compensation mechanism are
+separately designed.
+
+A Lyapunov-based adaptive law was derived to update the neural network
+weights, and a $\sigma$-modification technique was incorporated to improve
+the robustness against persistent approximation errors and disturbances.
+The stability analysis demonstrated that the closed-loop system is
+uniformly ultimately bounded, and all system states and neural network
+weight estimation errors remain bounded under the proposed adaptive
+control framework.
+
+Simulation studies were conducted on both a nonlinear servo system and a
+two-link robotic manipulator. The results of the servo system verified
+that the RBF neural network can effectively approximate unknown
+non-smooth disturbances and improve tracking performance compared with the
+nominal controller without compensation. Furthermore, increasing the
+number of hidden nodes enhanced the approximation capability of the neural
+network. The two-link manipulator simulation further demonstrated the
+effectiveness of the proposed controller in the presence of dynamic
+coupling, parameter uncertainties, and external disturbances, achieving
+accurate trajectory tracking while maintaining bounded control inputs.
+
+Future work will focus on experimental validation using a physical robotic
+platform and further improvements of the adaptive compensation mechanism
+under more challenging conditions, such as time-varying uncertainties,
+actuator constraints, and communication limitations in networked robotic
+systems.

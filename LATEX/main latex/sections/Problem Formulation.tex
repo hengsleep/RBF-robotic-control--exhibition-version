@@ -1,0 +1,156 @@
+\section{Problem Formulation}
+
+\subsection{System Dynamics}
+
+Consider an $n$-degree-of-freedom (DOF) rigid robotic manipulator governed by the Euler--Lagrange equation
+
+\begin{equation}
+	M(q)\ddot q+C(q,\dot q)\dot q+G(q)=\tau+d,
+	\label{eq:dynamics}
+\end{equation}
+
+where $q,\dot q,\ddot q\in\mathbb{R}^n$ denote the joint position, velocity, and acceleration vectors, respectively. The matrix $M(q)\in\mathbb{R}^{n\times n}$ denotes the inertia matrix, $C(q,\dot q)\in\mathbb{R}^{n\times n}$ is the Coriolis and centrifugal matrix, $G(q)\in\mathbb{R}^n$ is the gravity vector, $\tau\in\mathbb{R}^n$ is the control input, and $d\in\mathbb{R}^n$ represents the lumped external disturbance and unmodeled dynamics.
+
+The following standard properties of Euler--Lagrange systems are adopted throughout this paper.
+
+\begin{property}
+	The inertia matrix $M(q)$ is symmetric and uniformly positive definite. Specifically, there exist two positive constants $m_1$ and $m_2$ satisfying
+	\begin{equation}
+		m_1I\le M(q)\le m_2I,
+	\end{equation}
+	for all $q\in\mathbb{R}^n$.
+\end{property}
+
+\begin{property}
+	The matrix $\dot M(q)-2C(q,\dot q)$ is skew-symmetric, i.e.,
+	\begin{equation}
+		x^{\mathrm T}\!\left(\dot M(q)-2C(q,\dot q)\right)x=0,
+	\end{equation}
+	for any $x\in\mathbb{R}^n$.
+\end{property}
+
+In practical robotic systems, the exact dynamic model is unavailable due to parameter uncertainties, payload variations, friction, and unmodeled dynamics. Accordingly, the manipulator dynamics are decomposed into a nominal model and an uncertainty term as
+
+\begin{equation}
+	M(q)=M_0(q)+\Delta M(q),
+\end{equation}
+
+\begin{equation}
+	C(q,\dot q)=C_0(q,\dot q)+\Delta C(q,\dot q),
+\end{equation}
+
+\begin{equation}
+	G(q)=G_0(q)+\Delta G(q),
+\end{equation}
+
+where $M_0(q)$, $C_0(q,\dot q)$, and $G_0(q)$ denote the nominal inertia, Coriolis/centrifugal, and gravity terms, respectively.
+
+Substituting the above decompositions into \eqref{eq:dynamics} yields
+
+\begin{equation}
+	\left(M_0+\Delta M\right)\ddot q
+	+\left(C_0+\Delta C\right)\dot q
+	+\left(G_0+\Delta G\right)
+	=
+	\tau+d.
+\end{equation}
+
+Rearranging the above equation gives
+
+\begin{equation}
+	M_0(q)\ddot q
+	+
+	C_0(q,\dot q)\dot q
+	+
+	G_0(q)
+	=
+	\tau
+	+
+	f(q,\dot q,\ddot q),
+	\label{eq:nominal}
+\end{equation}
+
+where
+
+\begin{equation}
+	f(q,\dot q,\ddot q)
+	=
+	d
+	-
+	\Delta M(q)\ddot q
+	-
+	\Delta C(q,\dot q)\dot q
+	-
+	\Delta G(q).
+	\label{eq:lumped}
+\end{equation}
+
+The nonlinear function $f(\cdot)$ represents the lumped uncertainty consisting of modeling errors, parameter variations, external disturbances, and unmodeled dynamics.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Tracking Control Problem}
+
+Assume that the desired joint trajectory satisfies
+
+\begin{equation}
+	q_d,\;
+	\dot q_d,\;
+	\ddot q_d
+	\in
+	\mathcal{L}_{\infty}.
+\end{equation}
+
+Define the tracking error and its derivative as
+
+\begin{equation}
+	e=q-q_d,
+	\qquad
+	\dot e=\dot q-\dot q_d.
+	\label{eq:error}
+\end{equation}
+
+Differentiating \eqref{eq:error} yields
+
+\begin{equation}
+	\ddot e=\ddot q-\ddot q_d.
+	\label{eq:error_second}
+\end{equation}
+
+The desired tracking performance is specified by the second-order error dynamics
+
+\begin{equation}
+	\ddot e
+	+
+	K_v\dot e
+	+
+	K_pe
+	=
+	0,
+	\label{eq:error_dynamics}
+\end{equation}
+
+where $K_p,K_v\in\mathbb{R}^{n\times n}$ are symmetric positive-definite gain matrices.
+
+\begin{assumption}
+	The external disturbance is bounded, i.e.,
+	\begin{equation}
+		\|d(t)\|\le d_{\max},
+	\end{equation}
+	where $d_{\max}$ is an unknown positive constant.
+\end{assumption}
+
+Substituting \eqref{eq:error_second} into \eqref{eq:error_dynamics} yields the desired joint acceleration
+
+\begin{equation}
+	\ddot q
+	=
+	\ddot q_d
+	-
+	K_v\dot e
+	-
+	K_pe.
+	\label{eq:desired_acc}
+\end{equation}
+
+The control objective is to design an adaptive neural controller such that all closed-loop signals remain bounded and the tracking error converges to a sufficiently small neighborhood of the origin despite the presence of lumped uncertainties.

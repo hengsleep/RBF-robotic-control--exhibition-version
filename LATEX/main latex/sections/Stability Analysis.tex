@@ -1,0 +1,486 @@
+\section{Stability Analysis}
+
+In this section, the stability of the proposed adaptive neural controller is established using the Lyapunov direct method. For simplicity of the theoretical analysis, the nominal closed-loop system matrix $A$ defined in \eqref{eq:AB} is assumed to be Hurwitz. Consequently, for any given symmetric positive-definite matrix $Q\in\mathbb{R}^{2n\times2n}$, there exists a unique symmetric positive-definite matrix $P\in\mathbb{R}^{2n\times2n}$ satisfying the Lyapunov equation
+
+\begin{equation}
+	A^{T}P+PA=-Q,
+	\label{eq:lyapunov}
+\end{equation}
+
+where $Q=Q^{T}>0$ and $P=P^{T}>0$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Lyapunov Stability Analysis}
+
+Consider the following composite Lyapunov candidate function
+
+\begin{equation}
+	V
+	=
+	\frac12
+	X^{T}PX
+	+
+	\frac{1}{2\gamma}
+	\operatorname{tr}
+	\left(
+	\tilde W^{T}\tilde W
+	\right),
+	\label{eq:V}
+\end{equation}
+
+where $\gamma>0$ denotes the adaptation gain.
+
+Differentiating \eqref{eq:V} with respect to time yields
+
+\begin{equation}
+	\dot V
+	=
+	\frac12
+	\dot X^{T}PX
+	+
+	\frac12
+	X^{T}P\dot X
+	+
+	\frac1\gamma
+	\operatorname{tr}
+	\left(
+	\dot{\tilde W}^{T}\tilde W
+	\right).
+	\label{eq:Vdot1}
+\end{equation}
+
+Since the ideal weight matrix $W^{*}$ is constant, one has
+
+\begin{equation}
+	\dot{\tilde W}
+	=
+	-
+	\dot{\hat W}.
+	\label{eq:weightdot}
+\end{equation}
+
+Substituting the closed-loop system \eqref{eq:ss}
+
+\begin{equation}
+	\dot X
+	=
+	AX
+	+
+	B
+	\left(
+	\tilde W^{T}h(x)
+	+
+	\varepsilon
+	\right)
+\end{equation}
+
+into \eqref{eq:Vdot1} gives
+
+\begin{align}
+	\dot V
+	=&
+	\frac12
+	\left[
+	AX
+	+
+	B
+	\left(
+	\tilde W^{T}h
+	+
+	\varepsilon
+	\right)
+	\right]^{T}
+	PX
+	\nonumber\\
+	&
+	+
+	\frac12
+	X^{T}
+	P
+	\left[
+	AX
+	+
+	B
+	\left(
+	\tilde W^{T}h
+	+
+	\varepsilon
+	\right)
+	\right]
+	\nonumber\\
+	&
+	-
+	\frac1\gamma
+	\operatorname{tr}
+	\left(
+	\dot{\hat W}^{T}\tilde W
+	\right).
+	\label{eq:Vdot2}
+\end{align}
+
+Expanding \eqref{eq:Vdot2} yields
+
+\begin{align}
+	\dot V
+	=&
+	\frac12
+	X^{T}
+	(A^{T}P+PA)
+	X
+	\nonumber\\
+	&
+	+
+	X^{T}PB
+	\tilde W^{T}h
+	+
+	X^{T}PB\varepsilon
+	\nonumber\\
+	&
+	-
+	\frac1\gamma
+	\operatorname{tr}
+	\left(
+	\dot{\hat W}^{T}\tilde W
+	\right).
+	\label{eq:Vdot3}
+\end{align}
+
+Using the Lyapunov equation \eqref{eq:lyapunov} $A^{T}P+PA=-Q$, one obtains
+
+\begin{equation}
+	\dot V
+	=
+	-
+	\frac12
+	X^{T}QX
+	+
+	X^{T}PB
+	\tilde W^{T}h
+	+
+	X^{T}PB\varepsilon
+	-
+	\frac1\gamma
+	\operatorname{tr}
+	\left(
+	\dot{\hat W}^{T}\tilde W
+	\right).
+	\label{eq:Vdot4}
+\end{equation}
+
+By exploiting the cyclic property of the trace operator,
+
+\begin{equation}
+	X^{T}PB\tilde W^{T}h
+	=
+	\operatorname{tr}
+	\left(
+	\tilde W^{T}
+	h
+	X^{T}
+	PB
+	\right),
+\end{equation}
+
+the derivative of the Lyapunov function can be rewritten as
+
+\begin{align}
+	\dot V
+	=&
+	-
+	\frac12
+	X^{T}QX
+	+
+	X^{T}PB\varepsilon
+	\nonumber\\
+	&
+	+
+	\frac1\gamma
+	\operatorname{tr}
+	\left[
+	\tilde W^{T}
+	\left(
+	\gamma
+	h
+	X^{T}
+	PB
+	-
+	\dot{\hat W}
+	\right)
+	\right].
+	\label{eq:Vdot5}
+\end{align}
+
+\subsection{Adaptive Law with $\sigma$-Modification}
+
+To eliminate the neural-network parameter estimation term in \eqref{eq:Vdot4}, the following trace identity is first employed:
+
+\begin{equation}
+	X^{T}PB\tilde{W}^{T}h(x)
+	=
+	\operatorname{tr}
+	\left[
+	\tilde{W}^{T}
+	h(x)
+	X^{T}PB
+	\right].
+	\label{eq:trace_identity}
+\end{equation}
+
+Substituting \eqref{eq:trace_identity} into \eqref{eq:Vdot4} yields
+
+\begin{equation}
+	\dot{V}
+	=
+	-\frac{1}{2}
+	X^{T}QX
+	+
+	X^{T}PB\varepsilon
+	+
+	\frac{1}{\gamma}
+	\operatorname{tr}
+	\left[
+	\tilde{W}^{T}
+	\left(
+	\gamma
+	h(X)
+	X^{T}PB
+	-
+	\dot{\hat{W}}
+	\right)
+	\right].
+	\label{eq:adaptive1}
+\end{equation}
+
+Accordingly, the adaptive law is selected as
+
+\begin{equation}
+	\dot{\hat{W}}
+	=
+	\gamma
+	h(X)
+	X^{T}
+	PB,
+	\label{eq:adaptive2}
+\end{equation}
+
+which completely cancels the parameter estimation term in the Lyapunov derivative. Consequently,
+
+\begin{equation}
+	\dot{V}
+	=
+	-\frac{1}{2}
+	X^{T}QX
+	+
+	X^{T}PB\varepsilon.
+	\label{eq:adaptive3}
+\end{equation}
+
+Since the neural-network approximation error is bounded, namely,
+
+\begin{equation}
+	\|\varepsilon\|
+	\le
+	\varepsilon_{0},
+\end{equation}
+
+the Lyapunov derivative satisfies
+
+\begin{equation}
+	\dot{V}
+	\le
+	-
+	\frac{1}{2}
+	\lambda_{\min}(Q)
+	\|X\|^{2}
+	+
+	\|PB\|
+	\varepsilon_{0}
+	\|X\|.
+	\label{eq:adaptive4}
+\end{equation}
+
+Therefore, whenever
+
+\begin{equation}
+	\|X\|
+	\ge
+	\frac
+	{2\|PB\|\varepsilon_{0}}
+	{\lambda_{\min}(Q)},
+	\label{eq:adaptive5}
+\end{equation}
+
+one has $\dot{V}\le0$. Hence, the closed-loop system is uniformly ultimately bounded.
+
+\begin{remark}
+	The standard adaptive law may suffer from the parameter drift problem when persistent disturbances or approximation errors exist. Since the tracking error only converges to a bounded neighborhood of the origin, the weight update may continue accumulating residual errors, resulting in unbounded parameter estimation. 
+\end{remark}
+
+To further improve the robustness of the adaptive law and suppress parameter drift caused by approximation errors and external disturbances, the following $\sigma$-modification is introduced
+
+\begin{equation}
+	\dot{\hat{W}}
+	=
+	\gamma
+	h(X)
+	X^{T}
+	PB
+	-
+	\sigma
+	\gamma
+	\|X\|
+	\hat{W},
+	\label{eq:sigma1}
+\end{equation}
+
+where $\sigma>0$ denotes the leakage coefficient.
+
+Substituting \eqref{eq:sigma1} into \eqref{eq:adaptive1} gives
+
+\begin{equation}
+	\dot{V}
+	=
+	-
+	\frac{1}{2}
+	X^{T}QX
+	+
+	X^{T}PB\varepsilon
+	+
+	\sigma
+	\|X\|
+	\operatorname{tr}
+	\left(
+	\tilde{W}^{T}
+	\hat{W}
+	\right).
+	\label{eq:sigma2}
+\end{equation}
+
+\subsection{Uniform Ultimate Boundedness Analysis}
+
+To analyze the influence of the $\sigma$-modification term, the following identity is first established:
+
+\begin{equation}
+	\operatorname{tr}
+	\left(
+	\tilde{W}^{T}\hat{W}
+	\right)
+	=
+	\operatorname{tr}
+	\left(
+	\tilde{W}^{T}W^{*}
+	\right)
+	-
+	\operatorname{tr}
+	\left(
+	\tilde{W}^{T}\tilde{W}
+	\right).
+	\label{eq:uub1}
+\end{equation}
+
+Applying the Cauchy--Schwarz inequality gives
+
+\begin{equation}
+	\operatorname{tr}
+	\left(
+	\tilde{W}^{T}W^{*}
+	\right)
+	\le
+	\|\tilde{W}\|_{F}
+	\|W^{*}\|_{F}
+	\le
+	\|\tilde{W}\|_{F}
+	W_{\max},
+	\label{eq:uub2}
+\end{equation}
+
+where $W_{\max}$ is a positive constant satisfying
+
+\[
+\|W^{*}\|_{F}\le W_{\max}.
+\]
+Substituting \eqref{eq:uub1} and \eqref{eq:uub2} into \eqref{eq:sigma2} yields
+\begin{equation}
+	\begin{aligned}
+		\dot{V} \le & -\frac{1}{2} \lambda_{\min}(Q) \|X\|^{2} + \|PB\| \varepsilon_{0} \|X\| \\
+		& + \sigma \|X\| \|\tilde{W}\|_{F} W_{\max} - \sigma \|X\| \|\tilde{W}\|_{F}^{2}.
+	\end{aligned}
+	\label{eq:uub3}
+\end{equation}
+
+Factoring out $\|X\|$ gives
+\begin{equation}
+	\begin{aligned}
+		\dot{V} \le -\|X\| \Big[ & \frac{1}{2} \lambda_{\min}(Q) \|X\| + \sigma \|\tilde{W}\|_{F}^{2} \\
+		& - \sigma W_{\max} \|\tilde{W}\|_{F} - \|PB\| \varepsilon_{0} \Big].
+	\end{aligned}
+	\label{eq:uub4}
+\end{equation}
+
+Completing the square gives
+\begin{equation}
+	\begin{aligned}
+		\sigma \|\tilde{W}\|_{F}^{2} - \sigma W_{\max} \|\tilde{W}\|_{F} = & \, \sigma \left( \|\tilde{W}\|_{F} - \frac{1}{2} W_{\max} \right)^{2} \\
+		& - \frac{\sigma}{4} W_{\max}^{2}.
+	\end{aligned}
+	\label{eq:uub5}
+\end{equation}
+
+Substituting \eqref{eq:uub5} into \eqref{eq:uub4} yields
+\begin{equation}
+	\begin{aligned}
+		\dot{V} \le -\|X\| \bigg[ & \frac{1}{2} \lambda_{\min}(Q) \|X\| + \sigma \left( \|\tilde{W}\|_{F} - \frac{1}{2} W_{\max} \right)^{2} \\
+		& - \left( \frac{\sigma}{4} W_{\max}^{2} + \|PB\| \varepsilon_{0} \right) \bigg].
+	\end{aligned}
+	\label{eq:uub6}
+\end{equation}
+
+Therefore,
+
+\begin{equation}
+	\|X\|
+	>
+	\frac{2}{\lambda_{\min}(Q)}
+	\left(
+	\frac{\sigma}{4}
+	W_{\max}^{2}
+	+
+	\|PB\|
+	\varepsilon_{0}
+	\right),
+	\label{eq:uub7}
+\end{equation}
+
+and
+
+\begin{equation}
+	\|\tilde{W}\|_{F}
+	>
+	\frac12
+	W_{\max}
+	+
+	\sqrt{
+		\frac14
+		W_{\max}^{2}
+		+
+		\frac{\|PB\|
+			\varepsilon_{0}}
+		{\sigma}
+	},
+	\label{eq:uub8}
+\end{equation}
+
+imply that
+
+\[
+\dot V<0.
+\]
+
+Hence, both the system state $X$ and the neural-network weight estimation error $\tilde{W}$ are uniformly ultimately bounded.
+
+\begin{remark}
+	The conditions in \eqref{eq:uub7} and \eqref{eq:uub8} are alternative conditions. The satisfaction of either condition is sufficient to guarantee that $\dot V<0$, which ensures the uniform ultimate boundedness of the closed-loop system.
+\end{remark}
+
+Consequently, all closed-loop signals remain bounded, and the tracking error converges to a compact neighborhood of the origin despite the presence of modeling uncertainties and external disturbances.

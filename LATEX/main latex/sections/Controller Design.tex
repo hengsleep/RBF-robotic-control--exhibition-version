@@ -1,0 +1,223 @@
+\section{Controller Design}
+
+\subsection{Nominal Controller Design}
+
+To achieve the desired tracking objective, define the auxiliary control input as
+
+\begin{equation}
+	v
+	=
+	\ddot q_d
+	-
+	K_v\dot e
+	-
+	K_pe,
+	\label{eq:v}
+\end{equation}
+
+where $K_p,K_v\in\mathbb{R}^{n\times n}$ are symmetric positive-definite gain matrices.
+
+Based on the nominal manipulator dynamics, the control law is designed as
+
+\begin{equation}
+	\tau
+	=
+	M_0(q)v
+	+
+	C_0(q,\dot q)\dot q
+	+
+	G_0(q)
+	-
+	\hat f(x),
+	\label{eq:controller}
+\end{equation}
+
+where $\hat f(x)$ denotes the neural-network estimation of the lumped uncertainty.
+
+\begin{remark}
+	The introduction of the virtual control input $v$ decouples the controller into two functional modules. The outer-loop controller computes the virtual acceleration command $v$ to achieve the desired tracking performance, whereas the inner-loop controller realizes this command by generating the actual joint torque $\tau$ through dynamic inversion and RBF neural network compensation. This modular design separates trajectory tracking from dynamic compensation, thereby simplifying controller design and implementation.
+\end{remark}
+
+Substituting \eqref{eq:controller} into the nominal dynamics \eqref{eq:nominal} yields
+
+\begin{equation}
+	M_0(q)\ddot q
+	=
+	M_0(q)v
+	+
+	f(q,\dot q,\ddot q)
+	-
+	\hat f(x).
+\end{equation}
+
+Using the definition of $v$ in \eqref{eq:v}, one obtains
+
+\begin{equation}
+	M_0(q)
+	\left(
+	\ddot q
+	-
+	\ddot q_d
+	+
+	K_v\dot e
+	+
+	K_pe
+	\right)
+	=
+	f
+	-
+	\hat f(x).
+\end{equation}
+
+Since
+
+\begin{equation}
+	\ddot e
+	=
+	\ddot q
+	-
+	\ddot q_d,
+\end{equation}
+
+the closed-loop tracking error dynamics can be written as
+
+\begin{equation}
+	\ddot e
+	+
+	K_v\dot e
+	+
+	K_pe
+	=
+	M_0^{-1}(q)
+	\left(
+	f
+	-
+	\hat f(x)
+	\right).
+	\label{eq:closedloop}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{State-Space Representation}
+
+Define the state vector as
+
+\begin{equation}
+	X
+	=
+	\begin{bmatrix}
+		e\\
+		\dot e
+	\end{bmatrix},
+	\qquad
+	\dot X
+	=
+	\begin{bmatrix}
+		\dot e\\
+		\ddot e
+	\end{bmatrix}.
+	\label{eq:state}
+\end{equation}
+
+Substituting \eqref{eq:closedloop} into \eqref{eq:state} gives
+
+\begin{equation}
+	\dot X
+	=
+	AX
+	+
+	B
+	\left(
+	f
+	-
+	\hat f(x)
+	\right),
+	\label{eq:ss1}
+\end{equation}
+
+where
+
+\begin{equation}
+	A
+	=
+	\begin{bmatrix}
+		0&I\\
+		-K_p&-K_v
+	\end{bmatrix},
+	\qquad
+	B
+	=
+	\begin{bmatrix}
+		0\\
+		M_0^{-1}(q)
+	\end{bmatrix}.
+	\label{eq:AB}
+\end{equation}
+
+Equation \eqref{eq:ss1} reformulates the second-order closed-loop system as a first-order state-space representation, facilitating the subsequent stability analysis and adaptive controller design.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{RBF Neural Network Approximation}
+
+To compensate for the unknown lumped uncertainty $f(x)$, an RBF neural network is employed.
+
+According to the universal approximation theorem, there exists an ideal constant weight matrix $W^*$ such that
+
+\begin{equation}
+	f(x)
+	=
+	W^{*T}h(x)
+	+
+	\varepsilon,
+	\label{eq:rbf}
+\end{equation}
+
+where $h(x)\in\mathbb{R}^{m}$ denotes the Gaussian basis function vector, $W^*\in\mathbb{R}^{m\times n}$ is the ideal weight matrix, and $\varepsilon\in\mathbb{R}^{n}$ represents the bounded approximation error satisfying
+
+\begin{equation}
+	\|\varepsilon\|
+	\le
+	\bar\varepsilon.
+\end{equation}
+
+The neural-network output is given by
+
+\begin{equation}
+	\hat f(x)
+	=
+	\hat W^Th(x),
+	\label{eq:fhat}
+\end{equation}
+
+where $\hat W$ denotes the online estimate of the ideal weight matrix.
+
+Define the weight estimation error as
+
+\begin{equation}
+	\tilde W
+	=
+	W^*
+	-
+	\hat W.
+	\label{eq:weight}
+\end{equation}
+
+Substituting \eqref{eq:rbf} and \eqref{eq:fhat} into \eqref{eq:ss1} yields
+
+\begin{equation}
+	\dot X
+	=
+	AX
+	+
+	B
+	\left(
+	\tilde W^Th(x)
+	+
+	\varepsilon
+	\right),
+	\label{eq:ss}
+\end{equation}
+
+which will be employed in the subsequent Lyapunov stability analysis.
