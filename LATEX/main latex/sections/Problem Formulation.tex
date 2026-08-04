@@ -13,6 +13,10 @@ where $q,\dot q,\ddot q\in\mathbb{R}^n$ denote the joint position, velocity, and
 
 The following standard properties of Euler--Lagrange systems are adopted throughout this paper.
 
+\begin{assumption}
+	The unknown external disturbance $d(t)$ is piecewise continuous and uniformly bounded, i.e., there exists an unknown positive constant $d_m$ such that $\Vert{}d(t)\Vert{} \le d_m, \forall t \ge 0$. Furthermore, if the disturbance depends on the system states $d(x, t)$, it is assumed to be Lipschitz continuous with respect to $x$ over a compact domain $\Omega_x$, ensuring the existence of a bounded RBF approximation error.
+\end{assumption}
+
 \begin{property}
 	The inertia matrix $M(q)$ is symmetric and uniformly positive definite. Specifically, there exist two positive constants $m_1$ and $m_2$ satisfying
 	\begin{equation}

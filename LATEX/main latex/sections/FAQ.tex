@@ -1,0 +1,83 @@
+\section{FAQ}
+
+\subsection{What do the uncertainty terms $f(\cdot)$ and $d(t)$ represent, and what assumptions are required for them?}
+
+In the robot dynamics, $d(t)$ represents the unknown external disturbance torque acting on the manipulator, such as unknown payload variations, environmental contact forces, and external disturbances.
+
+However, the external disturbance is only one part of the total uncertainty considered in this work. Since the exact dynamic model of a practical robot is usually unavailable, the differences between the actual dynamics and the nominal model, together with external disturbances and unmodeled dynamics, are collected into a lumped uncertainty term.
+
+The lumped uncertainty is defined as:
+
+\[
+f(q,\dot q,\ddot q)
+=
+d
+-\Delta M(q)\ddot q
+-\Delta C(q,\dot q)\dot q
+-\Delta G(q)
+\]
+
+where $\Delta M$, $\Delta C$, and $\Delta G$ denote the modeling errors between the actual robot dynamics and the nominal model.
+
+Therefore, $f(\cdot)$ represents the overall unknown nonlinear uncertainty, including modeling uncertainties, parameter variations, external disturbances, and unmodeled effects. The RBF neural network is used to estimate this lumped uncertainty rather than the external disturbance $d(t)$ alone:
+
+\[
+\hat f(x)=\hat W^T h(x)
+\]
+
+where $\hat f(x)$ denotes the neural-network estimation of the lumped uncertainty. After expressing the lumped uncertainty as a function of the neural-network input vector $x$, it can be represented as:
+
+\[
+f(x)=W^{*T}h(x)+\varepsilon(x)
+\]
+
+where $W^*$ denotes the ideal weight matrix and $\varepsilon(x)$ denotes the bounded approximation error.
+
+
+For the stability analysis, the uncertainty terms are assumed to satisfy the following conditions.
+
+\subsubsection{Uniform boundedness}
+
+The unknown external disturbance is assumed to be bounded. That is, there exists an unknown positive constant $d_m$ such that:
+
+\[
+\|d(t)\|\leq d_m,\quad \forall t\geq0
+\]
+
+This assumption indicates that the external torque applied to the robot is physically limited. Without bounded disturbances, the adaptive parameters may suffer from parameter drift, and the uniform ultimate boundedness (UUB) of the closed-loop system cannot be guaranteed.
+
+
+\subsubsection{Continuity of the uncertainty}
+
+If the disturbance is only a time-dependent signal $d(t)$, it is generally assumed to be piecewise continuous. This allows finite and bounded sudden changes, such as an abrupt payload change or a short contact impact.
+
+If the uncertainty is state-dependent, i.e., $f=f(x)$ or $d=d(x,t)$, it is commonly assumed to be Lipschitz continuous with respect to the system state over a compact domain $\Omega_x$:
+
+\[
+\|f(x_1)-f(x_2)\|
+\leq L_f\|x_1-x_2\|
+\]
+
+where $L_f$ is the Lipschitz constant.
+
+This condition guarantees the smoothness of the unknown nonlinear uncertainty and ensures that the RBF neural network can approximate it with a bounded approximation error:
+
+\[
+f(x)=W^{*T}h(x)+\varepsilon(x)
+\]
+
+where $\varepsilon(x)$ denotes the bounded approximation error.
+
+
+\subsubsection{Bounded derivative assumption}
+
+Some advanced control methods require the derivative of the disturbance to be bounded:
+
+\[
+\|\dot d(t)\|\leq d_{dm}<\infty .
+\]
+
+However, this assumption is not necessary for the RBF adaptive controller proposed in this work because the adaptive law does not require the estimation or differentiation of $\dot d(t)$.
+
+
+In summary, the essential assumption in this work is that the lumped uncertainty $f(\cdot)$ is bounded and can be approximated by the RBF neural network with a bounded approximation error. The external disturbance $d(t)$ is considered as one component of this lumped uncertainty and is assumed to be piecewise continuous and uniformly bounded.
