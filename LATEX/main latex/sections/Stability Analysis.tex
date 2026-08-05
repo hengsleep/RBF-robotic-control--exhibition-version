@@ -314,10 +314,10 @@ Therefore, whenever
 one has $\dot{V}\le0$. Hence, the closed-loop system is uniformly ultimately bounded.
 
 \begin{remark}
-	The standard adaptive law may suffer from the parameter drift problem when persistent disturbances or approximation errors exist. Since the tracking error only converges to a bounded neighborhood of the origin, the weight update may continue accumulating residual errors, resulting in unbounded parameter estimation. 
+	The adaptive law \eqref{eq:adaptive2} is a pure integrator driven by $h(X)X^{T}PB$, which depends only on the state $X$ and contains no term that penalizes the magnitude of $\hat{W}$ itself. Consequently, \eqref{eq:adaptive2} alone cannot guarantee the boundedness of $\hat{W}$: whenever a persistent disturbance or a nonvanishing approximation error $\varepsilon$ is present, the tracking error $X$ no longer converges to the origin but only to a bounded neighborhood as shown in \eqref{eq:adaptive5}, so the driving term $h(X)X^{T}PB$ generally never vanishes. If this residual excitation does not average out to zero, $\hat{W}$ may keep accumulating in a fixed direction indefinitely, leading to unbounded parameter estimates even though the tracking error itself remains bounded. This is the well-known parameter drift phenomenon in adaptive control.
 \end{remark}
 
-To further improve the robustness of the adaptive law and suppress parameter drift caused by approximation errors and external disturbances, the following $\sigma$-modification is introduced
+To suppress parameter drift and endow the adaptive law with an explicit self-decaying mechanism against persistent disturbances and approximation errors, the following $\sigma$-modification is introduced:
 
 \begin{equation}
 	\dot{\hat{W}}

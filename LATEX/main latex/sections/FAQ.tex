@@ -81,3 +81,404 @@ However, this assumption is not necessary for the RBF adaptive controller propos
 
 
 In summary, the essential assumption in this work is that the lumped uncertainty $f(\cdot)$ is bounded and can be approximated by the RBF neural network with a bounded approximation error. The external disturbance $d(t)$ is considered as one component of this lumped uncertainty and is assumed to be piecewise continuous and uniformly bounded.
+
+\subsection{How are the RBF centers and widths selected, and how is the curse of dimensionality addressed for high-dimensional robotic systems?}
+
+For a multi-degree-of-freedom robotic system, the input vector of the RBF neural network is defined as the tracking error state:
+
+\[
+x=X=
+\begin{bmatrix}
+	e\\
+	\dot e
+\end{bmatrix}
+\in\mathbb{R}^{2n},
+\]
+
+where $n$ denotes the number of robot joints. Therefore, each RBF center is a vector in the same state space:
+
+\[
+c_i\in\mathbb{R}^{2n},\quad i=1,2,\dots,m .
+\]
+
+The Gaussian basis function is defined as:
+
+\[
+h_i(x)=
+\exp
+\left(
+-\frac{\|x-c_i\|^2}{2b_i^2}
+\right),
+\]
+
+where $c_i$ and $b_i$ represent the center and width of the $i$-th basis function, respectively.
+
+
+\subsubsection{Selection of RBF centers}
+
+The selection of RBF centers is critical for the approximation capability of the neural network. In this work, the centers are selected using a uniform distribution strategy, which is a commonly adopted and robust approach for low-dimensional control systems. The centers are predefined to cover the expected operating region of the tracking error state space.
+
+It should be noted that each center represents a complete point in the state space:
+
+\[
+c_i=
+[c_{i1},c_{i2},\dots,c_{i,2n}]^T ,
+\]
+
+rather than a combination of independent nodes assigned to each dimension.
+
+For higher-dimensional robotic systems, uniform placement may become inefficient. A possible improvement is to obtain the centers from collected system trajectories using data-driven methods, such as clustering algorithms (e.g., K-means). This allows the basis functions to concentrate on the regions that are frequently visited during operation, which can be considered as future work.
+
+
+\subsubsection{Selection of RBF widths}
+
+The width parameter $b_i$ determines the coverage range of each Gaussian basis function.
+
+If $b_i$ is too small, each basis function becomes overly localized, resulting in poor generalization capability and slow adaptation. Conversely, if $b_i$ is too large, different basis functions become less distinguishable, which reduces the approximation accuracy.
+
+In this work, a fixed width is adopted for simplicity and computational efficiency:
+
+\[
+b_i=b,\quad i=1,2,\dots,m .
+\]
+
+An adaptive width selection strategy based on the distance between neighboring centers can further improve the approximation performance, which is also a potential direction for future research.
+
+
+\subsubsection{Avoiding the curse of dimensionality}
+
+A major concern for RBF neural networks in high-dimensional systems is the curse of dimensionality. A traditional grid-based RBF structure assigns multiple nodes independently along each input dimension. If each dimension requires $m$ nodes, the total number of neurons grows exponentially:
+
+\[
+m^{2n}.
+\]
+
+Such a structure quickly becomes computationally infeasible as the number of robot joints increases.
+
+However, the RBF structure adopted in this work does not use a grid combination strategy. Instead, a fixed number of local basis functions is directly selected:
+
+\[
+\{c_1,c_2,\dots,c_m\}.
+\]
+
+Therefore, the computational complexity of evaluating the hidden layer is approximately:
+
+\[
+\mathcal{O}(m\cdot2n),
+\]
+
+rather than:
+
+\[
+\mathcal{O}(m^{2n}).
+\]
+
+This design avoids the exponential growth of neurons with respect to system dimensions. In practical robotic applications, increasing the number of neurons exponentially with the state dimension is unnecessary and computationally impractical. A finite number of properly distributed local basis functions provides a reasonable balance between approximation capability and real-time implementation requirements.
+
+
+Nevertheless, the approximation accuracy still depends on the number and distribution of selected centers. Therefore, for more complex high-dimensional robotic systems, adaptive center selection or data-driven basis optimization methods can be further investigated.
+
+\subsection{Why is the $\sigma$-modification introduced, and how does it affect the tracking error convergence?}
+
+The $\sigma$-modification is introduced to prevent the parameter drift problem in adaptive control. 
+Without the leakage term, the standard adaptive law is given by
+
+\[
+\dot{\hat W}
+=
+\gamma h(X)X^{T}PB .
+\]
+
+This update law behaves as a pure integrator driven by the tracking error state. Although the Lyapunov analysis can guarantee the boundedness of the tracking error, it does not explicitly penalize the magnitude of the estimated weights $\hat W$.
+
+In practical systems, the RBF approximation contains an unavoidable bounded error:
+
+\[
+f(x)=W^{*T}h(x)+\varepsilon(x),
+\]
+
+where
+
+\[
+\|\varepsilon(x)\|\leq\varepsilon_0 .
+\]
+
+Therefore, the tracking error generally converges only to a bounded neighborhood of the origin rather than exactly zero. As a result, the adaptation term
+
+\[
+\gamma h(X)X^{T}PB
+\]
+
+may remain persistently excited. If this residual excitation does not vanish, the estimated weights may continue accumulating over time, leading to unbounded parameter estimates. This phenomenon is known as parameter drift.
+
+
+To suppress parameter drift, the leakage term is introduced:
+
+\[
+\dot{\hat W}
+=
+\gamma h(X)X^{T}PB
+-
+\sigma\gamma\|X\|\hat W ,
+\]
+
+where $\sigma>0$ is the leakage coefficient.
+
+The additional term
+
+\[
+-\sigma\gamma\|X\|\hat W
+\]
+
+provides a damping effect on the estimated weights and prevents $\hat W$ from growing without bound. However, the introduction of this term also changes the convergence property of the closed-loop system. The asymptotic convergence of the ideal adaptive controller is replaced by uniform ultimate boundedness (UUB).
+
+
+\subsubsection{Ultimate tracking error bound}
+
+According to the Lyapunov analysis, the ultimate bound of the tracking error state can be defined as
+
+\[
+\rho_X
+=
+\frac{2}{\lambda_{\min}(Q)}
+\left(
+\frac{\sigma}{4}W_{\max}^{2}
++
+\|PB\|\varepsilon_0
+\right),
+\]
+
+where $W_{\max}$ is the upper bound of the ideal neural-network weights, $\varepsilon_0$ denotes the bounded RBF approximation error, and $P,Q$ are determined by the Lyapunov equation
+
+\[
+A^{T}P+PA=-Q .
+\]
+
+Therefore, the closed-loop state satisfies
+
+\[
+\|X(t)\|\leq\rho_X,
+\qquad t\rightarrow\infty .
+\]
+
+
+This expression reveals the trade-off introduced by the $\sigma$-modification. A larger leakage coefficient $\sigma$ provides stronger suppression of parameter drift, but increases the ultimate tracking error bound:
+
+\[
+\sigma\uparrow
+\quad\Rightarrow\quad
+\rho_X\uparrow .
+\]
+
+Therefore, $\sigma$ should not be selected excessively large. A suitable value is required to balance weight boundedness and tracking accuracy.
+
+
+\subsubsection{Influence of the control gains $K_p$ and $K_v$}
+
+The proportional and derivative gains determine the nominal tracking dynamics:
+
+\[
+\ddot e+K_v\dot e+K_pe=0 .
+\]
+
+The control gains affect the ultimate bound indirectly through the closed-loop system matrix:
+
+\[
+A=
+\begin{bmatrix}
+	0&I\\
+	-K_p&-K_v
+\end{bmatrix},
+\]
+
+which determines the Lyapunov matrices $P$ and $Q$. Therefore, the relationship between $K_p,K_v$ and the ultimate bound is implicit:
+
+\[
+K_p,K_v
+\rightarrow
+A
+\rightarrow
+P,Q
+\rightarrow
+\rho_X .
+\]
+
+A simple explicit expression of $\rho_X=f(K_p,K_v)$ is generally unavailable because $P$ is obtained from the Lyapunov equation.
+
+
+Although increasing $K_p$ and $K_v$ can improve transient tracking performance and reduce the theoretical error bound, excessively large gains may introduce practical problems.
+
+
+First, large feedback gains increase the required control torque:
+
+\[
+\tau
+\approx
+M_0(q)
+(
+\ddot q_r-K_v\dot e-K_pe
+),
+\]
+
+which may exceed the physical actuator limitation:
+
+\[
+|\tau|>\tau_{\max}.
+\]
+
+This results in actuator saturation.
+
+
+Second, large derivative gains may amplify measurement noise. Since the velocity signal usually contains noise:
+
+\[
+\dot q_m=\dot q+n(t),
+\]
+
+the derivative feedback term becomes
+
+\[
+-K_v\dot q_m
+=
+-K_v\dot q-K_v n(t).
+\]
+
+Therefore, excessive $K_v$ may introduce high-frequency control oscillations.
+
+
+Finally, high feedback gains increase the closed-loop bandwidth and may excite unmodeled high-frequency dynamics, such as flexible joints, friction dynamics, or actuator dynamics.
+
+
+\subsubsection{Practical gain selection}
+
+Therefore, the control gains are not selected by simply minimizing the theoretical ultimate bound. Instead, they should be chosen according to the desired closed-loop dynamics and practical constraints, including actuator limitations, measurement noise, and unmodeled dynamics.
+
+In this work, the RBF neural network is introduced to approximate the unknown nonlinear dynamics:
+
+\[
+\hat f(x)=\hat W^Th(x),
+\]
+
+which reduces the necessity of using excessively large feedback gains. Hence, the controller achieves a balance between tracking performance, robustness, and practical implementability.
+
+\subsection{Does the neural-network weight estimation converge to the ideal weight under the persistency of excitation condition?}
+
+The Lyapunov stability analysis in this work proves that both the tracking error state $X$ and the neural-network weight estimation error $\tilde W$ are uniformly ultimately bounded. However, boundedness of $\tilde W$ does not necessarily imply that the estimated weight matrix converges to the ideal value:
+
+\[
+\hat W(t)\rightarrow W^{*}.
+\]
+
+In adaptive control, the convergence of the parameter estimation error requires an additional condition known as the persistency of excitation (PE) condition.
+
+
+\subsubsection{Persistency of excitation condition}
+
+For the RBF neural network,
+
+\[
+f(x)=W^{*T}h(x)+\varepsilon(x),
+\]
+
+the weight adaptation is driven by the neural basis vector $h(x)$. The PE condition requires that the regressor vector contains sufficient excitation information over time. Specifically, there exist constants $T>0$ and $\alpha>0$ such that
+
+\[
+\int_t^{t+T}
+h(\tau)h^T(\tau)
+\,d\tau
+\geq
+\alpha I,
+\qquad
+\forall t\geq0 .
+\]
+
+Physically, this condition means that the robot trajectory must continuously explore different regions of the state space. Under sufficient excitation, the neural network receives enough information to identify the unknown nonlinear dynamics.
+
+
+However, the PE condition is generally difficult to guarantee in practical robotic systems. For example, when a manipulator performs a static positioning task or maintains a constant posture,
+
+\[
+q=q_d,
+\]
+
+the tracking error becomes
+
+\[
+e=0,\qquad \dot e=0.
+\]
+
+Since the neural-network input in this work is defined as
+
+\[
+X=
+\begin{bmatrix}
+	e\\
+	\dot e
+\end{bmatrix},
+\]
+
+the adaptation signal
+
+\[
+h(X)X^TPB
+\]
+
+vanishes. Consequently, the weight update stops and the neural network cannot continue improving its estimate.
+
+
+\subsubsection{Effect of insufficient excitation}
+
+Without the PE condition, the adaptive controller does not guarantee parameter convergence:
+
+\[
+\hat W\neq W^{*}.
+\]
+
+Instead, the estimated weights may converge to a bounded but non-optimal value. This phenomenon is referred to as the lack of parameter convergence.
+
+It is important to distinguish between stability and learning convergence. The objective of the proposed adaptive controller is not exact identification of the unknown dynamics, but online compensation of the lumped uncertainty:
+
+\[
+\hat f(x)=\hat W^{T}h(x),
+\]
+
+such that the tracking error remains bounded despite modeling uncertainties and external disturbances.
+
+
+\subsubsection{Relationship with the $\sigma$-modification}
+
+The $\sigma$-modification introduced in this work is mainly designed to prevent parameter drift rather than to guarantee parameter convergence.
+
+The adaptive law is given by
+
+\[
+\dot{\hat W}
+=
+\gamma h(X)X^{T}PB
+-
+\sigma\gamma\|X\|\hat W .
+\]
+
+The leakage term
+
+\[
+-\sigma\gamma\|X\|\hat W
+\]
+
+provides additional damping on the estimated weights and prevents unbounded parameter growth when persistent disturbances or approximation errors exist.
+
+For a static condition where
+
+\[
+X=0,
+\]
+
+both the learning term and the leakage term vanish:
+
+\[
+\dot{\hat W}=0.
+\]
+
+Therefore, the estimated weights remain constant rather than drifting indefinitely. However, without sufficient excitation, the final value of $\hat W$ is not guaranteed to be the optimal weight $W^*$.
+
+In summary, the proposed controller guarantees bounded tracking performance and bounded neural-network weights through Lyapunov analysis and the $\sigma$-modification. However, exact convergence of the estimated weights to the ideal weights requires additional excitation conditions, which are not assumed in this work.

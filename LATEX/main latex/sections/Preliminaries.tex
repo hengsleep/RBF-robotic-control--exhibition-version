@@ -3,55 +3,164 @@
 \subsection{Radial Basis Function (RBF) Neural Networks}
 \label{subsec:rbf_nn}
 
-In this paper, Radial Basis Function (RBF) neural networks (NNs) are utilized to approximate the unknown continuous non-linear functions within the robotic manipulator dynamics. 
+In this paper, Radial Basis Function (RBF) neural networks (NNs) are employed to approximate the unknown nonlinear lumped uncertainty in the robotic manipulator dynamics.
 
-Generally, an RBF NN can be represented as the linear combination of localized radial basis functions. Given an input vector $x \in \mathbb{R}^m$, the actual output of the RBF NN is expressed in a linearly parameterized form as:
-\begin{equation}
-	\hat{f}(x) = \hat{W}^T h(x)
-\end{equation}
-where $\hat{W} \in \mathbb{R}^{m \times p}$ is the weight matrix, and $h(x) = [h_1(x), h_2(x), \dots, h_m(x)]^T \in \mathbb{R}^m$ is the hidden layer activation vector. The Gaussian function is adopted as the basis function for the $i$-th hidden node:
-\begin{equation}
-	h_i(x) = \exp \left( -\frac{\|x - c_i\|^2}{2b_i^2} \right), \quad i = 1, 2, \dots, n
-\end{equation}
-where $c_i \in \mathbb{R}^m$ and $b_i > 0$ denote the center vector and the width parameter, respectively.
+For an $n$-degree-of-freedom (DOF) robotic system, the input vector of the RBF neural network is selected as the tracking error state:
 
-According to the universal approximation theorem, for any continuous function $f(x)$ defined on a compact set $\Omega_x \subset \mathbb{R}^m$, there exists an ideal constant weight matrix $W^*$ such that:
 \begin{equation}
-	f(x) = {W^*}^{T} h(x) + \epsilon
+	x
+	=
+	X
+	=
+	\begin{bmatrix}
+		e\\
+		\dot e
+	\end{bmatrix}
+	\in\mathbb{R}^{2n},
+	\label{eq:rbf_input}
 \end{equation}
-where $\epsilon \in \mathbb{R}^p$ represents the inherent NN approximation error. The ideal weight matrix $W^*$ is defined as:
+
+where $e=q-q_d$ and $\dot e=\dot q-\dot q_d$ denote the position tracking error and velocity tracking error, respectively.
+
+An RBF neural network consists of a nonlinear mapping from the input vector $x$ to the hidden layer and a linear combination of the hidden-layer outputs. The estimated lumped uncertainty is expressed as:
+
 \begin{equation}
-	W^* \triangleq \arg \min_{W} \left[ \sup_{x \in \Omega_x} \| f(x) - W^T h(x) \| \right]
+	\hat{f}(x)=\hat{W}^{T}h(x),
+	\label{eq:rbf_estimation}
 \end{equation}
-Furthermore, the approximation error $\epsilon$ is assumed to be bounded on the compact set $\Omega_x$, satisfying:
+
+where $\hat{W}\in\mathbb{R}^{m\times n}$ is the estimated weight matrix, $m$ represents the number of hidden neurons, and
+
 \begin{equation}
-	\|\epsilon\| \le \epsilon_N
+	h(x)
+	=
+	[h_1(x),h_2(x),\dots,h_m(x)]^T
+	\in\mathbb{R}^{m}
 \end{equation}
-where $\epsilon_N > 0$ is an unknown positive constant.
+
+denotes the hidden-layer activation vector.
+
+The Gaussian radial basis function of the $i$-th hidden neuron is defined as:
+
+\begin{equation}
+	h_i(x)
+	=
+	\exp
+	\left(
+	-\frac{\|x-c_i\|^2}{2b_i^2}
+	\right),
+	\quad i=1,2,\dots,m,
+\end{equation}
+
+where $c_i\in\mathbb{R}^{2n}$ represents the center vector of the $i$-th Gaussian basis function and $b_i>0$ denotes the corresponding width parameter.
+
+According to the universal approximation theorem, for any continuous nonlinear function $f(x)$ defined on a compact set $\Omega_x\subset\mathbb{R}^{2n}$, there exists an ideal constant weight matrix $W^*\in\mathbb{R}^{m\times n}$ such that:
+
+\begin{equation}
+	f(x)
+	=
+	{W^*}^{T}h(x)
+	+
+	\epsilon,
+	\label{eq:rbf_approximation}
+\end{equation}
+
+where $\epsilon\in\mathbb{R}^{n}$ denotes the inherent approximation error of the RBF neural network.
+
+The ideal weight matrix is defined as:
+
+\begin{equation}
+	W^*
+	\triangleq
+	\arg\min_W
+	\left[
+	\sup_{x\in\Omega_x}
+	\|f(x)-W^Th(x)\|
+	\right].
+\end{equation}
+
+Furthermore, the approximation error is assumed to be bounded on the compact set $\Omega_x$:
+
+\begin{equation}
+	\|\epsilon\|\leq\epsilon_N,
+\end{equation}
+
+where $\epsilon_N>0$ is an unknown positive constant.
 
 \begin{remark}
-	The linearly parameterized structure of the RBF NN implies that the network output is linear with respect to the weight parameter $\hat{W}$, while maintaining a non-linear mapping via $h(x)$. This characteristic significantly facilitates the derivation of adaptive parameter update laws using the Lyapunov synthesis method, thereby ensuring the closed-loop stability of the robotic system.
+	The linearly parameterized structure of the RBF neural network indicates that the network output is linear with respect to the adjustable weight matrix $\hat{W}$, while the nonlinear approximation capability is provided by the basis function vector $h(x)$. This property facilitates the design of adaptive weight update laws based on Lyapunov stability analysis.
 \end{remark}
+
 
 \subsection{Notation}
 
-The dimensions of the principal variables are summarized in Table~\ref{tab:notation}.
+The dimensions of the main variables used throughout this paper are summarized in Table~\ref{tab:notation}.
 
 \begin{table}[!t]
 	\caption{Dimensions of the Main Variables}
 	\label{tab:notation}
 	\centering
+	\renewcommand{\arraystretch}{1.15}
 	\begin{tabular}{ll}
 		\hline
-		Variable & Dimension \\
+		\textbf{Symbol} & \textbf{Dimension}\\
 		\hline
-		$e,\dot e$ & $\mathbb{R}^{n\times1}$ \\
-		$X=\begin{bmatrix}e\\ \dot e\end{bmatrix}$ & $\mathbb{R}^{2n\times1}$ \\
-		$P$ & $\mathbb{R}^{2n\times2n}$ \\
-		$B=\begin{bmatrix}0\\M_0^{-1}(q)\end{bmatrix}$ & $\mathbb{R}^{2n\times n}$ \\
-		$\varepsilon$ & $\mathbb{R}^{n\times1}$ \\
-		$h(X)$ & $\mathbb{R}^{m\times1}$ \\
-		$\tilde W$ & $\mathbb{R}^{m\times n}$ \\
+		$n$
+		& Scalar
+		\\
+		$q,\dot q,\ddot q$
+		& $\mathbb{R}^{n\times1}$
+		\\
+		$q_d,\dot q_d,\ddot q_d$
+		& $\mathbb{R}^{n\times1}$
+		\\
+		$e,\dot e$
+		& $\mathbb{R}^{n\times1}$
+		\\
+		$x=X=
+		\begin{bmatrix}
+			e\\
+			\dot e
+		\end{bmatrix}$
+		& $\mathbb{R}^{2n\times1}$
+		\\
+		$m$
+		& Scalar
+		\\
+		$h(x)$
+		& $\mathbb{R}^{m\times1}$
+		\\
+		$c_i$
+		& $\mathbb{R}^{2n\times1}$
+		\\
+		$C=[c_1,c_2,\dots,c_m]$
+		& $\mathbb{R}^{2n\times m}$
+		\\
+		$b_i$
+		& Scalar
+		\\
+		$W^*,\hat W,\tilde W$
+		& $\mathbb{R}^{m\times n}$
+		\\
+		$f(x),\hat f(x)$
+		& $\mathbb{R}^{n\times1}$
+		\\
+		$\epsilon$
+		& $\mathbb{R}^{n\times1}$
+		\\
+		$P$
+		& $\mathbb{R}^{2n\times2n}$
+		\\
+		$B=
+		\begin{bmatrix}
+			0\\
+			M_0^{-1}(q)
+		\end{bmatrix}$
+		& $\mathbb{R}^{2n\times n}$
+		\\
+		$d(t)$
+		& $\mathbb{R}^{n\times1}$
+		\\
 		\hline
 	\end{tabular}
 \end{table}

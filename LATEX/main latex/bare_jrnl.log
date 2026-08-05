@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2025.9.13)  3 AUG 2026 18:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2025.9.13)  5 AUG 2026 17:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -583,8 +583,8 @@ ta/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{D:/MiKTeX/fonts/enc/dvips/base/8r.
 enc}
 
 
-]) (sections/Problem Formulation.tex [2]) (sections/Controller Design.tex)
-(sections/Stability Analysis.tex [3]
+]) (sections/Problem Formulation.tex [2]) (sections/Controller Design.tex
+[3]) (sections/Stability Analysis.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 214.
@@ -609,33 +609,36 @@ Overfull \hbox (14.59792pt too wide) in paragraph at lines 12--24
  [][] 
  []
 
-<result_pdf/chap6_1sim.pdf, id=251, 794.97pt x 614.295pt>
+[5]
+<result_pdf/chap6_1sim.pdf, id=302, 794.97pt x 614.295pt>
 File: result_pdf/chap6_1sim.pdf Graphic file (type pdf)
 <use result_pdf/chap6_1sim.pdf>
 Package pdftex.def Info: result_pdf/chap6_1sim.pdf  used on input line 55.
 (pdftex.def)             Requested size: 247.6778pt x 191.38556pt.
-[5]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 138.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 138.
 
-<result_pdf/chap1_S=1_displacementandvelocity.pdf, id=272, 843.15pt x 632.3625p
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 138.
+
+<result_pdf/chap1_S=1_displacementandvelocity.pdf, id=305, 843.15pt x 632.3625p
 t>
 File: result_pdf/chap1_S=1_displacementandvelocity.pdf Graphic file (type pdf)
 <use result_pdf/chap1_S=1_displacementandvelocity.pdf>
 Package pdftex.def Info: result_pdf/chap1_S=1_displacementandvelocity.pdf  used
  on input line 148.
 (pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
-<result_pdf/chap1_S=1_RBFfx.pdf, id=273, 843.15pt x 632.3625pt>
+<result_pdf/chap1_S=1_RBFfx.pdf, id=306, 843.15pt x 632.3625pt>
 File: result_pdf/chap1_S=1_RBFfx.pdf Graphic file (type pdf)
 <use result_pdf/chap1_S=1_RBFfx.pdf>
 Package pdftex.def Info: result_pdf/chap1_S=1_RBFfx.pdf  used on input line 159
 .
 (pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
+[6 <./result_pdf/chap6_1sim.pdf> <./result_pdf/chap1_S=1_displacementandvelocit
+y.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 179.
@@ -644,14 +647,14 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 179.
 
-<result_pdf/chap1_S=2_displacementandvelocity.pdf, id=276, 843.15pt x 632.3625p
+<result_pdf/chap1_S=2_displacementandvelocity.pdf, id=345, 843.15pt x 632.3625p
 t>
 File: result_pdf/chap1_S=2_displacementandvelocity.pdf Graphic file (type pdf)
 <use result_pdf/chap1_S=2_displacementandvelocity.pdf>
 Package pdftex.def Info: result_pdf/chap1_S=2_displacementandvelocity.pdf  used
  on input line 193.
 (pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
-<result_pdf/chap1_S=2_RBFfx.pdf, id=277, 843.15pt x 632.3625pt>
+<result_pdf/chap1_S=2_RBFfx.pdf, id=346, 843.15pt x 632.3625pt>
 File: result_pdf/chap1_S=2_RBFfx.pdf Graphic file (type pdf)
 <use result_pdf/chap1_S=2_RBFfx.pdf>
 Package pdftex.def Info: result_pdf/chap1_S=2_RBFfx.pdf  used on input line 204
@@ -665,13 +668,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 222.
 
-[6 <./result_pdf/chap6_1sim.pdf> <./result_pdf/chap1_S=1_displacementandvelocit
-y.pdf> <./result_pdf/chap1_S=1_RBFfx.pdf
-
-pdfTeX warning: pdflatex.exe (file ./result_pdf/chap1_S=1_RBFfx.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
->]
-<result_pdf/chap1_S=3_S1=1_displacementandvelocity.pdf, id=324, 843.15pt x 632.
+<result_pdf/chap1_S=3_S1=1_displacementandvelocity.pdf, id=350, 843.15pt x 632.
 3625pt>
 File: result_pdf/chap1_S=3_S1=1_displacementandvelocity.pdf Graphic file (type 
 pdf)
@@ -679,42 +676,19 @@ pdf)
 Package pdftex.def Info: result_pdf/chap1_S=3_S1=1_displacementandvelocity.pdf 
  used on input line 250.
 (pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
-<result_pdf/chap1_S=3_S1=1_RBFfx.pdf, id=325, 843.15pt x 632.3625pt>
+<result_pdf/chap1_S=3_S1=1_RBFfx.pdf, id=351, 843.15pt x 632.3625pt>
 File: result_pdf/chap1_S=3_S1=1_RBFfx.pdf Graphic file (type pdf)
 <use result_pdf/chap1_S=3_S1=1_RBFfx.pdf>
 Package pdftex.def Info: result_pdf/chap1_S=3_S1=1_RBFfx.pdf  used on input lin
 e 262.
 (pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
-<result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=5.pdf, id=330, 843.15pt x 
-632.3625pt>
-File: result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=5.pdf Graphic file (t
-ype pdf)
-<use result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=5.pdf>
-Package pdftex.def Info: result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=5.
-pdf  used on input line 291.
-(pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
-<result_pdf/chap1_S=3_S1=2_RBFfx_m=5.pdf, id=331, 843.15pt x 632.3625pt>
-File: result_pdf/chap1_S=3_S1=2_RBFfx_m=5.pdf Graphic file (type pdf)
-<use result_pdf/chap1_S=3_S1=2_RBFfx_m=5.pdf>
-Package pdftex.def Info: result_pdf/chap1_S=3_S1=2_RBFfx_m=5.pdf  used on input
- line 303.
-(pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
-<result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=19.pdf, id=334, 843.15pt x
- 632.3625pt>
-File: result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=19.pdf Graphic file (
-type pdf)
-<use result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=19.pdf>
-Package pdftex.def Info: result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=19
-.pdf  used on input line 331.
-(pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
-<result_pdf/chap1_S=3_S1=2_RBFfx_m=19.pdf, id=335, 843.15pt x 632.3625pt>
-File: result_pdf/chap1_S=3_S1=2_RBFfx_m=19.pdf Graphic file (type pdf)
-<use result_pdf/chap1_S=3_S1=2_RBFfx_m=19.pdf>
-Package pdftex.def Info: result_pdf/chap1_S=3_S1=2_RBFfx_m=19.pdf  used on inpu
-t line 343.
-(pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
- [7 <./result_pdf/chap1_S=2_displacementandvelocity.pdf> <./result_pdf/chap1_S=
-2_RBFfx.pdf
+[7 <./result_pdf/chap1_S=1_RBFfx.pdf> <./result_pdf/chap1_S=2_displacementandve
+locity.pdf
+
+pdfTeX warning: pdflatex.exe (file ./result_pdf/chap1_S=2_displacementandveloci
+ty.pdf): PDF inclusion: multiple pdfs with page group included in a single page
+
+> <./result_pdf/chap1_S=2_RBFfx.pdf
 
 pdfTeX warning: pdflatex.exe (file ./result_pdf/chap1_S=2_RBFfx.pdf): PDF inclu
 sion: multiple pdfs with page group included in a single page
@@ -723,18 +697,42 @@ sion: multiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex.exe (file ./result_pdf/chap1_S=3_S1=1_displacementandv
 elocity.pdf): PDF inclusion: multiple pdfs with page group included in a single
  page
-> <./result_pdf/chap1_S=3_S1=1_RBFfx.pdf
-
-pdfTeX warning: pdflatex.exe (file ./result_pdf/chap1_S=3_S1=1_RBFfx.pdf): PDF 
-inclusion: multiple pdfs with page group included in a single page
 >]
-<result_pdf/chap6_2sim.pdf, id=394, 794.97pt x 614.295pt>
-File: result_pdf/chap6_2sim.pdf Graphic file (type pdf)
-<use result_pdf/chap6_2sim.pdf>
-Package pdftex.def Info: result_pdf/chap6_2sim.pdf  used on input line 407.
-(pdftex.def)             Requested size: 247.6778pt x 191.38556pt.
- [8 <./result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=5.pdf> <./result_pdf
-/chap1_S=3_S1=2_RBFfx_m=5.pdf
+<result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=5.pdf, id=408, 843.15pt x 
+632.3625pt>
+File: result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=5.pdf Graphic file (t
+ype pdf)
+<use result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=5.pdf>
+Package pdftex.def Info: result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=5.
+pdf  used on input line 291.
+(pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
+<result_pdf/chap1_S=3_S1=2_RBFfx_m=5.pdf, id=409, 843.15pt x 632.3625pt>
+File: result_pdf/chap1_S=3_S1=2_RBFfx_m=5.pdf Graphic file (type pdf)
+<use result_pdf/chap1_S=3_S1=2_RBFfx_m=5.pdf>
+Package pdftex.def Info: result_pdf/chap1_S=3_S1=2_RBFfx_m=5.pdf  used on input
+ line 303.
+(pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
+<result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=19.pdf, id=412, 843.15pt x
+ 632.3625pt>
+File: result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=19.pdf Graphic file (
+type pdf)
+<use result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=19.pdf>
+Package pdftex.def Info: result_pdf/chap1_S=3_S1=2_displacementandvelocity_m=19
+.pdf  used on input line 331.
+(pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
+<result_pdf/chap1_S=3_S1=2_RBFfx_m=19.pdf, id=413, 843.15pt x 632.3625pt>
+File: result_pdf/chap1_S=3_S1=2_RBFfx_m=19.pdf Graphic file (type pdf)
+<use result_pdf/chap1_S=3_S1=2_RBFfx_m=19.pdf>
+Package pdftex.def Info: result_pdf/chap1_S=3_S1=2_RBFfx_m=19.pdf  used on inpu
+t line 343.
+(pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
+ [8 <./result_pdf/chap1_S=3_S1=1_RBFfx.pdf> <./result_pdf/chap1_S=3_S1=2_displa
+cementandvelocity_m=5.pdf
+
+pdfTeX warning: pdflatex.exe (file ./result_pdf/chap1_S=3_S1=2_displacementandv
+elocity_m=5.pdf): PDF inclusion: multiple pdfs with page group included in a si
+ngle page
+> <./result_pdf/chap1_S=3_S1=2_RBFfx_m=5.pdf
 
 pdfTeX warning: pdflatex.exe (file ./result_pdf/chap1_S=3_S1=2_RBFfx_m=5.pdf): 
 PDF inclusion: multiple pdfs with page group included in a single page
@@ -743,11 +741,13 @@ PDF inclusion: multiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex.exe (file ./result_pdf/chap1_S=3_S1=2_displacementandv
 elocity_m=19.pdf): PDF inclusion: multiple pdfs with page group included in a s
 ingle page
-> <./result_pdf/chap1_S=3_S1=2_RBFfx_m=19.pdf
-
-pdfTeX warning: pdflatex.exe (file ./result_pdf/chap1_S=3_S1=2_RBFfx_m=19.pdf):
- PDF inclusion: multiple pdfs with page group included in a single page
 >]
+<result_pdf/chap6_2sim.pdf, id=467, 794.97pt x 614.295pt>
+File: result_pdf/chap6_2sim.pdf Graphic file (type pdf)
+<use result_pdf/chap6_2sim.pdf>
+Package pdftex.def Info: result_pdf/chap6_2sim.pdf  used on input line 407.
+(pdftex.def)             Requested size: 247.6778pt x 191.38556pt.
+
 Overfull \hbox (8.82639pt too wide) detected at line 471
 \OML/cmm/m/it/10 v \OT1/cmr/m/n/10 = 13\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 33\OML
 /cmm/m/it/10 ;  q[] \OT1/cmr/m/n/10 = 8\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 98\OML
@@ -756,7 +756,8 @@ Overfull \hbox (8.82639pt too wide) detected at line 471
 ML/cmm/m/it/10 :
  []
 
-<result_pdf/chap2_S=3_S1=2 Angle tracking of joint 1 and joint 2.pdf, id=445, 8
+[9 <./result_pdf/chap1_S=3_S1=2_RBFfx_m=19.pdf> <./result_pdf/chap6_2sim.pdf>]
+<result_pdf/chap2_S=3_S1=2 Angle tracking of joint 1 and joint 2.pdf, id=503, 8
 43.15pt x 632.3625pt>
 File: result_pdf/chap2_S=3_S1=2 Angle tracking of joint 1 and joint 2.pdf Graph
 ic file (type pdf)
@@ -765,7 +766,7 @@ Package pdftex.def Info: result_pdf/chap2_S=3_S1=2 Angle tracking of joint 1 an
 d joint 2.pdf  used on input line 558.
 (pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
 <result_pdf/chap2_S=3_S1=2 Angular velocity tracking of joint 1 and joint 2.pdf
-, id=446, 843.15pt x 632.3625pt>
+, id=504, 843.15pt x 632.3625pt>
 File: result_pdf/chap2_S=3_S1=2 Angular velocity tracking of joint 1 and joint 
 2.pdf Graphic file (type pdf)
 <use result_pdf/chap2_S=3_S1=2 Angular velocity tracking of joint 1 and joint 2
@@ -773,7 +774,7 @@ File: result_pdf/chap2_S=3_S1=2 Angular velocity tracking of joint 1 and joint
 Package pdftex.def Info: result_pdf/chap2_S=3_S1=2 Angular velocity tracking of
  joint 1 and joint 2.pdf  used on input line 570.
 (pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
-<result_pdf/chap2_S=3_S1=2 Control input of joint 1 and joint 2.pdf, id=448, 84
+<result_pdf/chap2_S=3_S1=2 Control input of joint 1 and joint 2.pdf, id=506, 84
 3.15pt x 632.3625pt>
 File: result_pdf/chap2_S=3_S1=2 Control input of joint 1 and joint 2.pdf Graphi
 c file (type pdf)
@@ -782,7 +783,7 @@ Package pdftex.def Info: result_pdf/chap2_S=3_S1=2 Control input of joint 1 and
  joint 2.pdf  used on input line 585.
 (pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
 <result_pdf/chap2_S=3_S1=2 f(x) of joint 1 and joint 2 and its approximation.pd
-f, id=450, 843.15pt x 632.3625pt>
+f, id=508, 843.15pt x 632.3625pt>
 File: result_pdf/chap2_S=3_S1=2 f(x) of joint 1 and joint 2 and its approximati
 on.pdf Graphic file (type pdf)
 <use result_pdf/chap2_S=3_S1=2 f(x) of joint 1 and joint 2 and its approximatio
@@ -790,8 +791,25 @@ n.pdf>
 Package pdftex.def Info: result_pdf/chap2_S=3_S1=2 f(x) of joint 1 and joint 2 
 and its approximation.pdf  used on input line 601.
 (pdftex.def)             Requested size: 247.6778pt x 185.75409pt.
-) (sections/Conclusion.tex [9 <./result_pdf/chap6_2sim.pdf> <./result_pdf/chap2
-_S=3_S1=2 Angle tracking of joint 1 and joint 2.pdf>]) (sections/FAQ.tex
+) (sections/Conclusion.tex [10 <./result_pdf/chap2_S=3_S1=2 Angle tracking of j
+oint 1 and joint 2.pdf> <./result_pdf/chap2_S=3_S1=2 Angular velocity tracking 
+of joint 1 and joint 2.pdf
+
+pdfTeX warning: pdflatex.exe (file ./result_pdf/chap2_S=3_S1=2 Angular velocity
+ tracking of joint 1 and joint 2.pdf): PDF inclusion: multiple pdfs with page g
+roup included in a single page
+> <./result_pdf/chap2_S=3_S1=2 Control input of joint 1 and joint 2.pdf
+
+pdfTeX warning: pdflatex.exe (file ./result_pdf/chap2_S=3_S1=2 Control input of
+ joint 1 and joint 2.pdf): PDF inclusion: multiple pdfs with page group include
+d in a single page
+> <./result_pdf/chap2_S=3_S1=2 f(x) of joint 1 and joint 2 and its approximatio
+n.pdf
+
+pdfTeX warning: pdflatex.exe (file ./result_pdf/chap2_S=3_S1=2 f(x) of joint 1 
+and joint 2 and its approximation.pdf): PDF inclusion: multiple pdfs with page 
+group included in a single page
+>]) (sections/FAQ.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 3.
@@ -812,20 +830,66 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 3.
 
-[10 <./result_pdf/chap2_S=3_S1=2 Angular velocity tracking of joint 1 and joint
- 2.pdf> <./result_pdf/chap2_S=3_S1=2 Control input of joint 1 and joint 2.pdf
+[11]
 
-pdfTeX warning: pdflatex.exe (file ./result_pdf/chap2_S=3_S1=2 Control input of
- joint 1 and joint 2.pdf): PDF inclusion: multiple pdfs with page group include
-d in a single page
-> <./result_pdf/chap2_S=3_S1=2 f(x) of joint 1 and joint 2 and its approximatio
-n.pdf
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 181.
 
-pdfTeX warning: pdflatex.exe (file ./result_pdf/chap2_S=3_S1=2 f(x) of joint 1 
-and joint 2 and its approximation.pdf): PDF inclusion: multiple pdfs with page 
-group included in a single page
->]) (sections/Python Reproduction Results.tex
-<result_pdf/python_result_pdf/Sim1_S=1 Tracking.pdf, id=525, 722.7pt x 578.16pt
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\sigma' on input line 181.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 181.
+
+[12]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 278.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 278.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 278.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 278.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 278.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 278.
+
+[13]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 450.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\sigma' on input line 450.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 450.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 450--451
+ \OT1/ptm/m/it/10 3) Re-la-tion-ship with the $\OML/cmm/m/it/10 ^^[$\OT1/ptm/m/
+it/10 -modification: [][][] \OT1/ptm/m/n/10 The $\OML/cmm/m/it/10 ^^[$\OT1/ptm/
+m/n/10 -
+ []
+
+) (sections/Python Reproduction Results.tex [14]
+<result_pdf/python_result_pdf/Sim1_S=1 Tracking.pdf, id=584, 722.7pt x 578.16pt
 >
 File: result_pdf/python_result_pdf/Sim1_S=1 Tracking.pdf Graphic file (type pdf
 )
@@ -833,7 +897,7 @@ File: result_pdf/python_result_pdf/Sim1_S=1 Tracking.pdf Graphic file (type pdf
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim1_S=1 Tracking.pdf  us
 ed on input line 36.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim1_S=2 Tracking.pdf, id=526, 722.7pt x 578.16pt
+<result_pdf/python_result_pdf/Sim1_S=2 Tracking.pdf, id=585, 722.7pt x 578.16pt
 >
 File: result_pdf/python_result_pdf/Sim1_S=2 Tracking.pdf Graphic file (type pdf
 )
@@ -841,7 +905,7 @@ File: result_pdf/python_result_pdf/Sim1_S=2 Tracking.pdf Graphic file (type pdf
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim1_S=2 Tracking.pdf  us
 ed on input line 43.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim1_S=1 Disturbance Estimation.pdf, id=527, 722.
+<result_pdf/python_result_pdf/Sim1_S=1 Disturbance Estimation.pdf, id=586, 722.
 7pt x 361.35pt>
 File: result_pdf/python_result_pdf/Sim1_S=1 Disturbance Estimation.pdf Graphic 
 file (type pdf)
@@ -849,7 +913,7 @@ file (type pdf)
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim1_S=1 Disturbance Esti
 mation.pdf  used on input line 64.
 (pdftex.def)             Requested size: 118.4403pt x 59.21767pt.
-<result_pdf/python_result_pdf/Sim1_S=2 Disturbance Estimation.pdf, id=528, 722.
+<result_pdf/python_result_pdf/Sim1_S=2 Disturbance Estimation.pdf, id=587, 722.
 7pt x 361.35pt>
 File: result_pdf/python_result_pdf/Sim1_S=2 Disturbance Estimation.pdf Graphic 
 file (type pdf)
@@ -857,7 +921,7 @@ file (type pdf)
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim1_S=2 Disturbance Esti
 mation.pdf  used on input line 71.
 (pdftex.def)             Requested size: 118.4403pt x 59.21767pt.
-<result_pdf/python_result_pdf/Sim1_S=3_S1=1_m=19 Tracking.pdf, id=529, 722.7pt 
+<result_pdf/python_result_pdf/Sim1_S=3_S1=1_m=19 Tracking.pdf, id=588, 722.7pt 
 x 578.16pt>
 File: result_pdf/python_result_pdf/Sim1_S=3_S1=1_m=19 Tracking.pdf Graphic file
  (type pdf)
@@ -865,7 +929,7 @@ File: result_pdf/python_result_pdf/Sim1_S=3_S1=1_m=19 Tracking.pdf Graphic file
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim1_S=3_S1=1_m=19 Tracki
 ng.pdf  used on input line 92.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=5 Tracking.pdf, id=530, 722.7pt x
+<result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=5 Tracking.pdf, id=589, 722.7pt x
  578.16pt>
 File: result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=5 Tracking.pdf Graphic file 
 (type pdf)
@@ -873,7 +937,7 @@ File: result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=5 Tracking.pdf Graphic file
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=5 Trackin
 g.pdf  used on input line 99.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=19 Tracking.pdf, id=531, 722.7pt 
+<result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=19 Tracking.pdf, id=590, 722.7pt 
 x 578.16pt>
 File: result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=19 Tracking.pdf Graphic file
  (type pdf)
@@ -881,7 +945,7 @@ File: result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=19 Tracking.pdf Graphic file
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=19 Tracki
 ng.pdf  used on input line 107.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=50 Tracking.pdf, id=532, 722.7pt 
+<result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=50 Tracking.pdf, id=591, 722.7pt 
 x 578.16pt>
 File: result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=50 Tracking.pdf Graphic file
  (type pdf)
@@ -890,7 +954,7 @@ Package pdftex.def Info: result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=50 Tracki
 ng.pdf  used on input line 114.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
 <result_pdf/python_result_pdf/Sim1_S=3_S1=1_m=19 Disturbance Estimation.pdf, id
-=533, 722.7pt x 361.35pt>
+=592, 722.7pt x 361.35pt>
 File: result_pdf/python_result_pdf/Sim1_S=3_S1=1_m=19 Disturbance Estimation.pd
 f Graphic file (type pdf)
 <use result_pdf/python_result_pdf/Sim1_S=3_S1=1_m=19 Disturbance Estimation.pdf
@@ -899,7 +963,7 @@ Package pdftex.def Info: result_pdf/python_result_pdf/Sim1_S=3_S1=1_m=19 Distur
 bance Estimation.pdf  used on input line 137.
 (pdftex.def)             Requested size: 118.4403pt x 59.21767pt.
 <result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=5 Disturbance Estimation.pdf, id=
-534, 722.7pt x 361.35pt>
+593, 722.7pt x 361.35pt>
 File: result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=5 Disturbance Estimation.pdf
  Graphic file (type pdf)
 <use result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=5 Disturbance Estimation.pdf>
@@ -908,7 +972,7 @@ Package pdftex.def Info: result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=5 Disturb
 ance Estimation.pdf  used on input line 144.
 (pdftex.def)             Requested size: 118.4403pt x 59.21767pt.
 <result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=19 Disturbance Estimation.pdf, id
-=535, 722.7pt x 361.35pt>
+=594, 722.7pt x 361.35pt>
 File: result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=19 Disturbance Estimation.pd
 f Graphic file (type pdf)
 <use result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=19 Disturbance Estimation.pdf
@@ -917,7 +981,7 @@ Package pdftex.def Info: result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=19 Distur
 bance Estimation.pdf  used on input line 152.
 (pdftex.def)             Requested size: 118.4403pt x 59.21767pt.
 <result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=50 Disturbance Estimation.pdf, id
-=536, 722.7pt x 361.35pt>
+=595, 722.7pt x 361.35pt>
 File: result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=50 Disturbance Estimation.pd
 f Graphic file (type pdf)
 <use result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=50 Disturbance Estimation.pdf
@@ -925,7 +989,7 @@ f Graphic file (type pdf)
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=50 Distur
 bance Estimation.pdf  used on input line 159.
 (pdftex.def)             Requested size: 118.4403pt x 59.21767pt.
-<result_pdf/python_result_pdf/Sim2_S=1 Position Tracking.pdf, id=537, 722.7pt x
+<result_pdf/python_result_pdf/Sim2_S=1 Position Tracking.pdf, id=596, 722.7pt x
  578.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=1 Position Tracking.pdf Graphic file 
 (type pdf)
@@ -933,7 +997,7 @@ File: result_pdf/python_result_pdf/Sim2_S=1 Position Tracking.pdf Graphic file
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=1 Position Trackin
 g.pdf  used on input line 188.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim2_S=2 Position Tracking.pdf, id=538, 722.7pt x
+<result_pdf/python_result_pdf/Sim2_S=2 Position Tracking.pdf, id=597, 722.7pt x
  578.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=2 Position Tracking.pdf Graphic file 
 (type pdf)
@@ -941,7 +1005,7 @@ File: result_pdf/python_result_pdf/Sim2_S=2 Position Tracking.pdf Graphic file
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=2 Position Trackin
 g.pdf  used on input line 195.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Position Tracking.pdf, id=539, 
+<result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Position Tracking.pdf, id=598, 
 722.7pt x 578.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Position Tracking.pdf Grap
 hic file (type pdf)
@@ -949,7 +1013,7 @@ hic file (type pdf)
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Positio
 n Tracking.pdf  used on input line 203.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Position Tracking.pdf, id=540, 
+<result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Position Tracking.pdf, id=599, 
 722.7pt x 578.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Position Tracking.pdf Grap
 hic file (type pdf)
@@ -957,7 +1021,7 @@ hic file (type pdf)
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Positio
 n Tracking.pdf  used on input line 210.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim2_S=1 Speed Tracking.pdf, id=541, 722.7pt x 57
+<result_pdf/python_result_pdf/Sim2_S=1 Speed Tracking.pdf, id=600, 722.7pt x 57
 8.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=1 Speed Tracking.pdf Graphic file (ty
 pe pdf)
@@ -965,7 +1029,7 @@ pe pdf)
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=1 Speed Tracking.p
 df  used on input line 232.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim2_S=2 Speed Tracking.pdf, id=542, 722.7pt x 57
+<result_pdf/python_result_pdf/Sim2_S=2 Speed Tracking.pdf, id=601, 722.7pt x 57
 8.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=2 Speed Tracking.pdf Graphic file (ty
 pe pdf)
@@ -973,7 +1037,7 @@ pe pdf)
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=2 Speed Tracking.p
 df  used on input line 239.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Speed Tracking.pdf, id=543, 722
+<result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Speed Tracking.pdf, id=602, 722
 .7pt x 578.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Speed Tracking.pdf Graphic
  file (type pdf)
@@ -981,7 +1045,7 @@ File: result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Speed Tracking.pdf Graphic
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Speed T
 racking.pdf  used on input line 247.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Speed Tracking.pdf, id=544, 722
+<result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Speed Tracking.pdf, id=603, 722
 .7pt x 578.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Speed Tracking.pdf Graphic
  file (type pdf)
@@ -989,7 +1053,7 @@ File: result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Speed Tracking.pdf Graphic
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Speed T
 racking.pdf  used on input line 254.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim2_S=1 Control Inputs.pdf, id=545, 722.7pt x 57
+<result_pdf/python_result_pdf/Sim2_S=1 Control Inputs.pdf, id=604, 722.7pt x 57
 8.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=1 Control Inputs.pdf Graphic file (ty
 pe pdf)
@@ -997,7 +1061,7 @@ pe pdf)
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=1 Control Inputs.p
 df  used on input line 276.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim2_S=2 Control Inputs.pdf, id=546, 722.7pt x 57
+<result_pdf/python_result_pdf/Sim2_S=2 Control Inputs.pdf, id=605, 722.7pt x 57
 8.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=2 Control Inputs.pdf Graphic file (ty
 pe pdf)
@@ -1005,7 +1069,7 @@ pe pdf)
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=2 Control Inputs.p
 df  used on input line 283.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Control Inputs.pdf, id=547, 722
+<result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Control Inputs.pdf, id=606, 722
 .7pt x 578.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Control Inputs.pdf Graphic
  file (type pdf)
@@ -1013,7 +1077,7 @@ File: result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Control Inputs.pdf Graphic
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Control
  Inputs.pdf  used on input line 291.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Control Inputs.pdf, id=548, 722
+<result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Control Inputs.pdf, id=607, 722
 .7pt x 578.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Control Inputs.pdf Graphic
  file (type pdf)
@@ -1021,7 +1085,7 @@ File: result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Control Inputs.pdf Graphic
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Control
  Inputs.pdf  used on input line 298.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim2_S=1 Disturbance Estimation.pdf, id=549, 722.
+<result_pdf/python_result_pdf/Sim2_S=1 Disturbance Estimation.pdf, id=608, 722.
 7pt x 578.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=1 Disturbance Estimation.pdf Graphic 
 file (type pdf)
@@ -1029,7 +1093,7 @@ file (type pdf)
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=1 Disturbance Esti
 mation.pdf  used on input line 320.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-<result_pdf/python_result_pdf/Sim2_S=2 Disturbance Estimation.pdf, id=550, 722.
+<result_pdf/python_result_pdf/Sim2_S=2 Disturbance Estimation.pdf, id=609, 722.
 7pt x 578.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=2 Disturbance Estimation.pdf Graphic 
 file (type pdf)
@@ -1038,7 +1102,7 @@ Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=2 Disturbance Esti
 mation.pdf  used on input line 327.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
 <result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Disturbance Estimation.pdf, id=
-551, 722.7pt x 578.16pt>
+610, 722.7pt x 578.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Disturbance Estimation.pdf
  Graphic file (type pdf)
 <use result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Disturbance Estimation.pdf>
@@ -1047,7 +1111,7 @@ Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Disturb
 ance Estimation.pdf  used on input line 335.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
 <result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Disturbance Estimation.pdf, id=
-552, 722.7pt x 578.16pt>
+611, 722.7pt x 578.16pt>
 File: result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Disturbance Estimation.pdf
  Graphic file (type pdf)
 <use result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Disturbance Estimation.pdf>
@@ -1055,47 +1119,52 @@ File: result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Disturbance Estimation.pdf
 Package pdftex.def Info: result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Disturb
 ance Estimation.pdf  used on input line 342.
 (pdftex.def)             Requested size: 118.4403pt x 94.74828pt.
-) [11 <./result_pdf/python_result_pdf/Sim1_S=1 Tracking.pdf> <./result_pdf/pyth
+) [15 <./result_pdf/python_result_pdf/Sim1_S=1 Tracking.pdf> <./result_pdf/pyth
 on_result_pdf/Sim1_S=2 Tracking.pdf> <./result_pdf/python_result_pdf/Sim1_S=1 D
 isturbance Estimation.pdf> <./result_pdf/python_result_pdf/Sim1_S=2 Disturbance
- Estimation.pdf>] [12 <./result_pdf/python_result_pdf/Sim1_S=3_S1=1_m=19 Tracki
-ng.pdf> <./result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=5 Tracking.pdf> <./resu
-lt_pdf/python_result_pdf/Sim1_S=3_S1=2_m=19 Tracking.pdf> <./result_pdf/python_
-result_pdf/Sim1_S=3_S1=2_m=50 Tracking.pdf> <./result_pdf/python_result_pdf/Sim
-1_S=3_S1=1_m=19 Disturbance Estimation.pdf> <./result_pdf/python_result_pdf/Sim
-1_S=3_S1=2_m=5 Disturbance Estimation.pdf> <./result_pdf/python_result_pdf/Sim1
-_S=3_S1=2_m=19 Disturbance Estimation.pdf> <./result_pdf/python_result_pdf/Sim1
-_S=3_S1=2_m=50 Disturbance Estimation.pdf> <./result_pdf/python_result_pdf/Sim2
-_S=1 Position Tracking.pdf> <./result_pdf/python_result_pdf/Sim2_S=2 Position T
-racking.pdf> <./result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Position Trackin
-g.pdf> <./result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Position Tracking.pdf>
+ Estimation.pdf> <./result_pdf/python_result_pdf/Sim1_S=3_S1=1_m=19 Tracking.pd
+f> <./result_pdf/python_result_pdf/Sim1_S=3_S1=2_m=5 Tracking.pdf> <./result_pd
+f/python_result_pdf/Sim1_S=3_S1=2_m=19 Tracking.pdf> <./result_pdf/python_resul
+t_pdf/Sim1_S=3_S1=2_m=50 Tracking.pdf> <./result_pdf/python_result_pdf/Sim1_S=3
+_S1=1_m=19 Disturbance Estimation.pdf> <./result_pdf/python_result_pdf/Sim1_S=3
+_S1=2_m=5 Disturbance Estimation.pdf> <./result_pdf/python_result_pdf/Sim1_S=3_
+S1=2_m=19 Disturbance Estimation.pdf> <./result_pdf/python_result_pdf/Sim1_S=3_
+S1=2_m=50 Disturbance Estimation.pdf> <./result_pdf/python_result_pdf/Sim2_S=1 
+Position Tracking.pdf> <./result_pdf/python_result_pdf/Sim2_S=2 Position Tracki
+ng.pdf> <./result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Position Tracking.pdf
+> <./result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Position Tracking.pdf>] [16
  <./result_pdf/python_result_pdf/Sim2_S=1 Speed Tracking.pdf> <./result_pdf/pyt
 hon_result_pdf/Sim2_S=2 Speed Tracking.pdf> <./result_pdf/python_result_pdf/Sim
 2_S=3_S1=1_m=5 Speed Tracking.pdf> <./result_pdf/python_result_pdf/Sim2_S=3_S1=
-2_m=5 Speed Tracking.pdf>]
-[13
-
- <./result_pdf/python_result_pdf/Sim2_S=1 Control Inputs.pdf> <./result_pdf/pyt
-hon_result_pdf/Sim2_S=2 Control Inputs.pdf> <./result_pdf/python_result_pdf/Sim
-2_S=3_S1=1_m=5 Control Inputs.pdf> <./result_pdf/python_result_pdf/Sim2_S=3_S1=
-2_m=5 Control Inputs.pdf> <./result_pdf/python_result_pdf/Sim2_S=1 Disturbance 
-Estimation.pdf> <./result_pdf/python_result_pdf/Sim2_S=2 Disturbance Estimation
-.pdf> <./result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Disturbance Estimation.
-pdf> <./result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5 Disturbance Estimation.p
-df>] (bare_jrnl.aux)
+2_m=5 Speed Tracking.pdf> <./result_pdf/python_result_pdf/Sim2_S=1 Control Inpu
+ts.pdf> <./result_pdf/python_result_pdf/Sim2_S=2 Control Inputs.pdf> <./result_
+pdf/python_result_pdf/Sim2_S=3_S1=1_m=5 Control Inputs.pdf> <./result_pdf/pytho
+n_result_pdf/Sim2_S=3_S1=2_m=5 Control Inputs.pdf> <./result_pdf/python_result_
+pdf/Sim2_S=1 Disturbance Estimation.pdf> <./result_pdf/python_result_pdf/Sim2_S
+=2 Disturbance Estimation.pdf> <./result_pdf/python_result_pdf/Sim2_S=3_S1=1_m=
+5 Disturbance Estimation.pdf> <./result_pdf/python_result_pdf/Sim2_S=3_S1=2_m=5
+ Disturbance Estimation.pdf>]
+(bare_jrnl.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
-Package rerunfilecheck Info: File `bare_jrnl.out' has not changed.
-(rerunfilecheck)             Checksum: A3751EE7E246F181ECB788B3CD7A1806;5949.
+
+
+Package rerunfilecheck Warning: File `bare_jrnl.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `bare_jrnl.out':
+(rerunfilecheck)             Before: E860F7D23AC030E8227E118A8E5BECAB;8625
+(rerunfilecheck)             After:  316C3EA535BF10C3156B44FA643E1B79;10387.
  ) 
 Here is how much of TeX's memory you used:
- 14162 strings out of 475247
- 240081 string characters out of 5774207
+ 14192 strings out of 475247
+ 240579 string characters out of 5774207
  1948785 words of memory out of 5000000
- 35305 multiletter control sequences out of 15000+600000
- 603608 words of font info for 133 fonts, out of 8000000 for 9000
+ 35316 multiletter control sequences out of 15000+600000
+ 604715 words of font info for 134 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  75i,17n,79p,966b,550s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <D:/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/MiKTeX/fonts/type1/p
@@ -1113,9 +1182,9 @@ msfonts/symbols/msam10.pfb><D:/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm1
 0.pfb><D:/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><D:/MiKTeX/fonts/type1/urw/ti
 mes/utmbi8a.pfb><D:/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><D:/MiKTeX/fonts/ty
 pe1/urw/times/utmri8a.pfb>
-Output written on bare_jrnl.pdf (13 pages, 1275069 bytes).
+Output written on bare_jrnl.pdf (16 pages, 1305365 bytes).
 PDF statistics:
- 1779 PDF objects out of 2073 (max. 8388607)
- 154 named destinations out of 1000 (max. 500000)
- 453 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1836 PDF objects out of 2073 (max. 8388607)
+ 172 named destinations out of 1000 (max. 500000)
+ 517 words of extra memory for PDF output out of 10000 (max. 10000000)
 
